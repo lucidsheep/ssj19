@@ -1,0 +1,3 @@
+[submodule "Assets/LSLib"]
+	path = Assets/LSLib
+	url = https://lucidsheep@bitbucket.org/lucidsheepgames/lslib.git
