@@ -455,3 +455,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2116111926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2116111928}
+  - component: {fileID: 2116111927}
+  m_Layer: 0
+  m_Name: Singletons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2116111927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116111926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6932a9fd38a6c440ea55af8d0945fb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTile: {fileID: 114097744784521908, guid: c3ae9353d2988436b9da72610b37b0f6,
+    type: 2}
+  obstacleOptions:
+  - item: {fileID: 114517796026169814, guid: cfc6be2648b244931bc93d86091ad321, type: 2}
+    weight: 6
+  - item: {fileID: 114908770398233576, guid: a1b15235b407b4a948ef39215d8beb0b, type: 2}
+    weight: 3
+  - item: {fileID: 0}
+    weight: 20
+  tileSize:
+    first: 1
+    second: 1
+    _initialized: 0
+--- !u!4 &2116111928
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116111926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
