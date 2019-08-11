@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MapTile : MonoBehaviour {
 
-	public enum TileCategory { TREE, WATER, THORNS, ROCK, FIRE }
+	public enum TileCategory { TREE, WATER, THORNS, ROCK, FIRE, FOOD, GROUND }
+    public TileCategory tileType;
 	public bool isObstacle;
 
 	public float containsFoodProbability;
@@ -22,4 +23,18 @@ public class MapTile : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(tileType == TileCategory.FOOD)
+        {
+            GameEngine.instance.OnFoodGathered();
+            Destroy(this.gameObject);
+        }
+    }
 }
