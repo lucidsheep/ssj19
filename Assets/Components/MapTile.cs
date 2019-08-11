@@ -36,5 +36,9 @@ public class MapTile : MonoBehaviour {
             GameEngine.instance.OnFoodGathered();
             Destroy(this.gameObject);
         }
+        else if(isDangerous && collision.gameObject.GetComponent<Health>() != null)
+        {
+            collision.gameObject.GetComponent<Health>().ReceiveDamage(Random.Range(damageRange.first, damageRange.second), Health.DamageType.FIRE);
+        }
     }
 }

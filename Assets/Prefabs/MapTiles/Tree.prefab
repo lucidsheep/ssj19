@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4983809251259042}
   - component: {fileID: 212889252573132488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114517796026169814}
   - component: {fileID: 50396583028381710}
   - component: {fileID: 58292788388711520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0242f770a9f77485893d4c0abe20f9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType: 0
   isObstacle: 1
   containsFoodProbability: 0
   containedFood: {fileID: 0}
@@ -158,7 +159,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -966431889
-  m_SortingLayer: 6
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21301018, guid: 893cd4428ba0140de8507b6db6ad3927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

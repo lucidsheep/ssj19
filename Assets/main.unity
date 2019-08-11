@@ -216,7 +216,7 @@ Transform:
   m_GameObject: {fileID: 14754325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25, y: 25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1467983324}
   m_Father: {fileID: 0}
@@ -667,6 +667,8 @@ MonoBehaviour:
   icon: {fileID: 556934120}
   bg: {fileID: 357230316}
   bar: {fileID: 278091188}
+  type: 1
+  target: {fileID: 14754325}
 --- !u!1 &357230314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2030,8 @@ MonoBehaviour:
   icon: {fileID: 908625630}
   bg: {fileID: 1772086278}
   bar: {fileID: 1332427541}
+  type: 0
+  target: {fileID: 14754325}
 --- !u!1 &1467983323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,6 +2433,8 @@ MonoBehaviour:
     weight: 20
   - item: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb, type: 2}
     weight: 2
+  - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
+    weight: 5
   tileSize:
     first: 1
     second: 1
