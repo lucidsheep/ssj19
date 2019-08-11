@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6878d60061044094f92f846129d383f6, type: 3}
   m_Name: Hide
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   value: 50
   abilityType: 0
   isRecessive: 0
-  abilityName: Camoflauge
+  abilityName: Camouflage
   abilityDescription: Hold button to hide from enemies
   type: 3
   staminaCost: 2

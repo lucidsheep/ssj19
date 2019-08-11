@@ -12,7 +12,7 @@ public class EvolutionMenuView : MonoBehaviour
         evolution = new Evolution();
         evolution.GenerateEvolution();
 
-        titleTxt.SetText("Evo Name");
+        titleTxt.SetText(""); // Evo Name");
         hpTxt.SetText(AddPlus(evolution.hp));
         spTxt.SetText(AddPlus(evolution.sp));
         strTxt.SetText(AddPlus(evolution.str));

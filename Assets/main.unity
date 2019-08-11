@@ -617,6 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 278091189}
   - component: {fileID: 278091188}
+  - component: {fileID: 278091190}
   m_Layer: 0
   m_Name: StamBar
   m_TagString: Untagged
@@ -652,6 +653,20 @@ Transform:
   m_Father: {fileID: 217937393}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &278091190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278091187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824e340c28753411abc534c82be499ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 556934120}
+  bg: {fileID: 357230316}
+  bar: {fileID: 278091188}
 --- !u!1 &357230314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1332427542}
   - component: {fileID: 1332427541}
+  - component: {fileID: 1332427543}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -1998,6 +2014,20 @@ Transform:
   m_Father: {fileID: 217937393}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1332427543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1332427540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824e340c28753411abc534c82be499ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 908625630}
+  bg: {fileID: 1772086278}
+  bar: {fileID: 1332427541}
 --- !u!1 &1467983323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,10 +2478,10 @@ MonoBehaviour:
   player: {fileID: 14754328}
   evoMenuTemplate: {fileID: 114581659286618384, guid: 0a5ccceb71f58c9409f6c07faafd041f,
     type: 2}
-  startingTime: 10
+  startingTime: 30
   timeIncrement: 0
-  foodRequirement: 1
-  foodRequirementIncrement: 10
+  foodRequirement: 15
+  foodRequirementIncrement: 5
 --- !u!114 &2116111931
 MonoBehaviour:
   m_ObjectHideFlags: 0

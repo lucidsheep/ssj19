@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using Rewired;
 using DG.Tweening;
+using TMPro;
 
 public class EvolutionMenu : MonoBehaviour
 {
     public EvolutionMenuView menuViewTemplate;
     public GameObject selector;
+    public TextMeshPro actionTxt;
+    public TextMeshPro traitTxt;
 
     List<EvolutionMenuView> menuItems = new List<EvolutionMenuView>();
     int curSelection = 0;
@@ -30,8 +33,16 @@ public class EvolutionMenu : MonoBehaviour
             menuItem.evolution = evolution;
             menuItems.Add(menuItem);
         }
+        TimeControl.StartTimer(.1f, () =>
+            UpdateSelection());
     }
 
+    void UpdateSelection()
+    {
+        Evolution curEvolution = menuItems[curSelection].evolution;
+        actionTxt.SetText(curEvolution.action == null ? "" : "ACTION: " + curEvolution.action.abilityName + " - " + curEvolution.action.abilityDescription);
+        traitTxt.SetText(curEvolution.trait == null ? "" : "TRAIT: " + curEvolution.trait.abilityName + " - " + curEvolution.trait.abilityDescription);
+    }
     private void Update()
     {
         if(controller.GetAxis("MoveX") > .5f && controller.GetAxisPrev("MoveX") <= .5f)
@@ -67,6 +78,7 @@ public class EvolutionMenu : MonoBehaviour
         {
             selector.transform.DOKill();
             selector.transform.DOLocalMoveX(-4f + (curSelection * 2f), .25f).SetEase(Ease.OutBack);
+            UpdateSelection();
         }
     }
 }
