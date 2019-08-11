@@ -25,7 +25,6 @@ public class EvoCamera : MonoBehaviour {
         if (Vector3.Distance(lastPosition, target.transform.position) < .1f) return;
 
         var pos = Camera.main.WorldToViewportPoint(target.transform.position);
-        Debug.Log(pos.ToString());
         Vector2 delta = new Vector2();
         if (pos.x > .5f + deadZone.x)
             delta.x = pos.x - deadZone.x - .5f;
