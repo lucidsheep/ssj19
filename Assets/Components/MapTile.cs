@@ -14,9 +14,12 @@ public class MapTile : MonoBehaviour {
 	public bool isDangerous;
 	public IntRange damageRange;
 
+    public Sprite[] spriteVariations;
+
 	// Use this for initialization
 	void Start () {
-		
+        if (spriteVariations.Length > 0)
+            GetComponentInChildren<SpriteRenderer>().sprite = spriteVariations[Random.Range(0, spriteVariations.Length)];
 	}
 	
 	// Update is called once per frame

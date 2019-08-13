@@ -148,7 +148,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!114 &14754327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,11 +371,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 183844364}
@@ -684,6 +684,7 @@ MonoBehaviour:
   bar: {fileID: 278091188}
   type: 1
   target: {fileID: 14754325}
+  shouldShake: 0
 --- !u!1 &357230314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2047,6 +2048,7 @@ MonoBehaviour:
   bar: {fileID: 1332427541}
   type: 0
   target: {fileID: 14754325}
+  shouldShake: 1
 --- !u!1 &1467983323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,7 +2072,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467983323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 14754331}
@@ -2110,7 +2112,7 @@ SpriteRenderer:
   m_SortingLayerID: -640183273
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300552, guid: 61ec788f8092445898f9a5fab1a8f68a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41b5e4e2477ea4ca597c42cdf7362fca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2327,11 +2329,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1798832951}
@@ -2449,7 +2451,7 @@ MonoBehaviour:
   - item: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb, type: 2}
     weight: 2
   - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
-    weight: 5
+    weight: 2
   tileSize:
     first: 1
     second: 1
