@@ -3,22 +3,54 @@ using UnityEngine;
 
 public class PlayerCharacter : Creature
 {
-    IntRange staminaPoints;
-    public int startingSP;
+	public float defaultDashTime;
+	public float defaultDashSpeed;
+
+	protected Stamina stamina;
+
     public List<Evolution> evolutionList = new List<Evolution>();
     public List<Action> actionList = new List<Action>();
     public List<Trait> traitList = new List<Trait>();
 
+	bool isDashing = false;
+	float dashLength;
+	float dashSpeed;
+
     protected override void Awake()
     {
         base.Awake();
-        staminaPoints = new IntRange(startingSP, startingSP);
+		dashLength = defaultDashTime;
+		dashSpeed = defaultDashSpeed;
     }
 
     private void Start()
     {
-
+		stamina = GetComponent<Stamina>();
+        controller.onButtonDown.AddListener(OnButtonDown);
     }
+
+    protected override void OnButtonDown(Controller.Command command)
+    {
+        switch(command)
+        {
+            case Controller.Command.DASH:
+                if (!isDashing) StartDash();
+                break;
+        }
+    }
+
+    void StartDash()
+	{
+        if (!stamina.ConsumeSP(20)) return;
+
+		speedMultiplier = dashSpeed;
+		isDashing = true;
+		TimeControl.StartTimer(dashLength, () =>
+		{
+			speedMultiplier = defaultSpeedMultiplier;
+			isDashing = false;
+		});
+	}
 
     public void AddEvolution(Evolution evolution)
     {
@@ -29,7 +61,7 @@ public class PlayerCharacter : Creature
     void ProcessEvolution(Evolution evolution)
     {
         health.SetMaxHP(health.hitPoints.second + evolution.hp);
-        staminaPoints.second += evolution.sp;
+        stamina.SetMaxSP(stamina.stamina.second + evolution.sp);
         strength += evolution.str;
         agility += evolution.agi;
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Rewired;
+using System;
 
 public class HumanController : Controller
 {
@@ -12,5 +13,11 @@ public class HumanController : Controller
     public override Vector2 GetJoystickDirection()
     {
         return source.GetAxis2D("MoveX", "MoveY");
+    }
+
+    private void Update()
+    {
+        if (source.GetButtonDown("DASH")) onButtonDown.Invoke(Command.DASH);
+       
     }
 }

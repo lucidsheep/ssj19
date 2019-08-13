@@ -11,6 +11,7 @@ public class UIBarDisplay : MonoBehaviour {
     public enum Type { HEALTH, STAMINA }
     public Type type;
     public GameObject target;
+    public bool shouldShake;
 
     IntRange storedValues;
     Tweener ratioTween;
@@ -26,22 +27,27 @@ public class UIBarDisplay : MonoBehaviour {
         GameEngine.instance.onMatingPhase.AddListener(HideDisplay);
         GameEngine.instance.onGatheringPhase.AddListener(ShowDisplay);
 
-        storedValues = type == Type.HEALTH ? target.GetComponent<Health>().hitPoints : new IntRange();
+        storedValues = type == Type.HEALTH ? target.GetComponent<Health>().hitPoints : target.GetComponent<Stamina>().stamina;
 
         if(type == Type.HEALTH)
         {
             target.GetComponent<Health>().onHPChange.AddListener(OnChange);
             target.GetComponent<Health>().onHPMaxChange.AddListener(OnMaxChange);
         }
-
+        else if(type == Type.STAMINA)
+        {
+            target.GetComponent<Stamina>().onSPChange.AddListener(OnChange);
+            target.GetComponent<Stamina>().onSPMaxChange.AddListener(OnMaxChange);
+        }
         basePosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
     }
 
     public void OnChange(int delta)
     {
         storedValues.first += delta;
-        AnimateBar();
-        Shake(.25f);
+        AnimateBar(Mathf.Abs(delta) <= 5);
+        if(shouldShake && delta < 0)
+            Shake(.25f);
     }
 
     void Shake(float time)
@@ -54,10 +60,12 @@ public class UIBarDisplay : MonoBehaviour {
         AnimateBar();
     }
 
-    void AnimateBar()
+    void AnimateBar(bool instant = false)
     {
         if (ratioTween != null) ratioTween.Kill();
-        ratioTween = DOTween.To(() => ratio, x => ratio = x, (float)storedValues.first / (float)storedValues.second, .25f).SetEase(Ease.InOutExpo);
+        if (instant) ratio = (float)storedValues.first / (float)storedValues.second;
+        else
+            ratioTween = DOTween.To(() => ratio, x => ratio = x, (float)storedValues.first / (float)storedValues.second, .25f).SetEase(Ease.InOutExpo);
 
     }
     public void ShowDisplay()

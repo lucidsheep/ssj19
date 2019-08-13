@@ -11,10 +11,12 @@ public class Creature : MonoBehaviour
 
     public int defaultStrength;
     public int defaultAgility;
+    public float defaultSpeedMultiplier = .7f;
 
     protected Health health;
     protected Controller controller;
     protected Rigidbody2D body;
+    protected float speedMultiplier;
 
     protected virtual void Awake()
     {
@@ -23,7 +25,7 @@ public class Creature : MonoBehaviour
         health = GetComponent<Health>();
         controller = GetComponent<Controller>();
         body = GetComponent<Rigidbody2D>();
-
+        speedMultiplier = defaultSpeedMultiplier;
         controller.onButtonDown.AddListener(OnButtonDown);
     }
 
@@ -31,7 +33,7 @@ public class Creature : MonoBehaviour
     {
         Vector2 direction = controller.GetJoystickDirection();
 
-        body.MovePosition(body.position + (direction * Time.deltaTime * agility));
+        body.MovePosition(body.position + (direction * Time.deltaTime * agility * speedMultiplier));
     }
 
     protected virtual void OnButtonDown(Controller.Command command)
