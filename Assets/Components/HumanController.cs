@@ -18,6 +18,7 @@ public class HumanController : Controller
     private void Update()
     {
         if (source.GetButtonDown("DASH")) onButtonDown.Invoke(Command.DASH);
+        if (source.GetButtonDown("Attack")) onButtonDown.Invoke(Command.ATTACK);
        
     }
 }

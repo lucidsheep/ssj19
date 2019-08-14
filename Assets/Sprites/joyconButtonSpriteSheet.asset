@@ -1,0 +1,612 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2019389346, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+  m_Name: joyconButtonSpriteSheet
+  m_EditorClassIdentifier: 
+  hashCode: -1456104050
+  material: {fileID: 21574506286654838}
+  materialHashCode: 0
+  spriteSheet: {fileID: 2800000, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  spriteInfoList:
+  - id: 0
+    x: 555
+    y: 268
+    width: 54
+    height: 44
+    xOffset: -27
+    yOffset: 22
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_8
+    hashCode: -854380279
+    unicode: 0
+    pivot: {x: -27, y: 22}
+    sprite: {fileID: 21300016, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 1
+    x: 622
+    y: 268
+    width: 54
+    height: 44
+    xOffset: -27
+    yOffset: 22
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_9
+    hashCode: -854380280
+    unicode: 0
+    pivot: {x: -27, y: 22}
+    sprite: {fileID: 21300018, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 2
+    x: 289
+    y: 266
+    width: 54
+    height: 48
+    xOffset: -27
+    yOffset: 24
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_4
+    hashCode: -854380283
+    unicode: 0
+    pivot: {x: -27, y: 24}
+    sprite: {fileID: 21300008, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 3
+    x: 355
+    y: 266
+    width: 54
+    height: 48
+    xOffset: -27
+    yOffset: 24
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_5
+    hashCode: -854380284
+    unicode: 0
+    pivot: {x: -27, y: 24}
+    sprite: {fileID: 21300010, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 4
+    x: 22
+    y: 264
+    width: 53
+    height: 52
+    xOffset: -26.5
+    yOffset: 46
+    xAdvance: 53
+    scale: 1
+    name: button_A
+    hashCode: -2135002744
+    unicode: 0
+    pivot: {x: -26.5, y: 26}
+    sprite: {fileID: 21300000, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 5
+    x: 89
+    y: 264
+    width: 53
+    height: 52
+    xOffset: -26.5
+    yOffset: 26
+    xAdvance: 53
+    scale: 1
+    name: button_B
+    hashCode: -2135002741
+    unicode: 0
+    pivot: {x: -26.5, y: 26}
+    sprite: {fileID: 21300002, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 6
+    x: 156
+    y: 264
+    width: 53
+    height: 52
+    xOffset: -26.5
+    yOffset: 26
+    xAdvance: 53
+    scale: 1
+    name: button_X
+    hashCode: -2135002735
+    unicode: 0
+    pivot: {x: -26.5, y: 26}
+    sprite: {fileID: 21300004, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 7
+    x: 222
+    y: 264
+    width: 53
+    height: 52
+    xOffset: -26.5
+    yOffset: 26
+    xAdvance: 53
+    scale: 1
+    name: button_Y
+    hashCode: -2135002736
+    unicode: 0
+    pivot: {x: -26.5, y: 26}
+    sprite: {fileID: 21300006, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 8
+    x: 422
+    y: 263
+    width: 54
+    height: 54
+    xOffset: -27
+    yOffset: 27
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_6
+    hashCode: -854380281
+    unicode: 0
+    pivot: {x: -27, y: 27}
+    sprite: {fileID: 21300012, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 9
+    x: 489
+    y: 263
+    width: 53
+    height: 54
+    xOffset: -26.5
+    yOffset: 27
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_7
+    hashCode: -854380282
+    unicode: 0
+    pivot: {x: -26.5, y: 27}
+    sprite: {fileID: 21300014, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 10
+    x: 551
+    y: 181
+    width: 54
+    height: 44
+    xOffset: -27
+    yOffset: 22
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_18
+    hashCode: 1870221624
+    unicode: 0
+    pivot: {x: -27, y: 22}
+    sprite: {fileID: 21300036, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 11
+    x: 618
+    y: 181
+    width: 54
+    height: 44
+    xOffset: -27
+    yOffset: 22
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_19
+    hashCode: 1870221625
+    unicode: 0
+    pivot: {x: -27, y: 22}
+    sprite: {fileID: 21300038, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 12
+    x: 285
+    y: 180
+    width: 54
+    height: 47
+    xOffset: -27
+    yOffset: 23.5
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_14
+    hashCode: 1870221620
+    unicode: 0
+    pivot: {x: -27, y: 23.5}
+    sprite: {fileID: 21300028, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 13
+    x: 351
+    y: 180
+    width: 54
+    height: 47
+    xOffset: -27
+    yOffset: 23.5
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_15
+    hashCode: 1870221621
+    unicode: 0
+    pivot: {x: -27, y: 23.5}
+    sprite: {fileID: 21300030, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 14
+    x: 19
+    y: 177
+    width: 52
+    height: 53
+    xOffset: -26
+    yOffset: 26.5
+    xAdvance: 52
+    scale: 1
+    name: joyconButtonSpriteSheet_10
+    hashCode: 1870221616
+    unicode: 0
+    pivot: {x: -26, y: 26.5}
+    sprite: {fileID: 21300020, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 15
+    x: 85
+    y: 177
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_11
+    hashCode: 1870221617
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300022, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 16
+    x: 152
+    y: 177
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_12
+    hashCode: 1870221618
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300024, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 17
+    x: 219
+    y: 177
+    width: 52
+    height: 53
+    xOffset: -26
+    yOffset: 26.5
+    xAdvance: 52
+    scale: 1
+    name: joyconButtonSpriteSheet_13
+    hashCode: 1870221619
+    unicode: 0
+    pivot: {x: -26, y: 26.5}
+    sprite: {fileID: 21300026, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 18
+    x: 418
+    y: 176
+    width: 54
+    height: 54
+    xOffset: -27
+    yOffset: 27
+    xAdvance: 54
+    scale: 1
+    name: joyconButtonSpriteSheet_16
+    hashCode: 1870221622
+    unicode: 0
+    pivot: {x: -27, y: 27}
+    sprite: {fileID: 21300032, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 19
+    x: 485
+    y: 176
+    width: 53
+    height: 54
+    xOffset: -26.5
+    yOffset: 27
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_17
+    hashCode: 1870221623
+    unicode: 0
+    pivot: {x: -26.5, y: 27}
+    sprite: {fileID: 21300034, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 20
+    x: 492
+    y: 115
+    width: 44
+    height: 15
+    xOffset: -22
+    yOffset: 7.5
+    xAdvance: 44
+    scale: 1
+    name: joyconButtonSpriteSheet_27
+    hashCode: 1870221652
+    unicode: 0
+    pivot: {x: -22, y: 7.5}
+    sprite: {fileID: 21300054, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 21
+    x: 425
+    y: 100
+    width: 45
+    height: 45
+    xOffset: -22.5
+    yOffset: 22.5
+    xAdvance: 45
+    scale: 1
+    name: joyconButtonSpriteSheet_26
+    hashCode: 1870221653
+    unicode: 0
+    pivot: {x: -22.5, y: 22.5}
+    sprite: {fileID: 21300052, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 22
+    x: 626
+    y: 99
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_29
+    hashCode: 1870221658
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300058, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 23
+    x: 19
+    y: 97
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_20
+    hashCode: 1870221651
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300040, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 24
+    x: 86
+    y: 97
+    width: 52
+    height: 53
+    xOffset: -26
+    yOffset: 26.5
+    xAdvance: 52
+    scale: 1
+    name: joyconButtonSpriteSheet_21
+    hashCode: 1870221650
+    unicode: 0
+    pivot: {x: -26, y: 26.5}
+    sprite: {fileID: 21300042, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 25
+    x: 152
+    y: 97
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_22
+    hashCode: 1870221649
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300044, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 26
+    x: 219
+    y: 97
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_23
+    hashCode: 1870221648
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300046, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 27
+    x: 286
+    y: 97
+    width: 52
+    height: 53
+    xOffset: -26
+    yOffset: 26.5
+    xAdvance: 52
+    scale: 1
+    name: joyconButtonSpriteSheet_24
+    hashCode: 1870221655
+    unicode: 0
+    pivot: {x: -26, y: 26.5}
+    sprite: {fileID: 21300048, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 28
+    x: 354
+    y: 96
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_25
+    hashCode: 1870221654
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300050, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 29
+    x: 560
+    y: 96
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_28
+    hashCode: 1870221659
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300056, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 30
+    x: 495
+    y: 38
+    width: 41
+    height: 11
+    xOffset: -20.5
+    yOffset: 5.5
+    xAdvance: 41
+    scale: 1
+    name: joyconButtonSpriteSheet_37
+    hashCode: 1870221685
+    unicode: 0
+    pivot: {x: -20.5, y: 5.5}
+    sprite: {fileID: 21300074, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 31
+    x: 428
+    y: 23
+    width: 42
+    height: 41
+    xOffset: -21
+    yOffset: 20.5
+    xAdvance: 42
+    scale: 1
+    name: joyconButtonSpriteSheet_36
+    hashCode: 1870221684
+    unicode: 0
+    pivot: {x: -21, y: 20.5}
+    sprite: {fileID: 21300072, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 32
+    x: 560
+    y: 23
+    width: 53
+    height: 52
+    xOffset: -26.5
+    yOffset: 26
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_38
+    hashCode: 1870221690
+    unicode: 0
+    pivot: {x: -26.5, y: 26}
+    sprite: {fileID: 21300076, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 33
+    x: 627
+    y: 22
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_39
+    hashCode: 1870221691
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300078, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 34
+    x: 22
+    y: 17
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_30
+    hashCode: 1870221682
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300060, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 35
+    x: 89
+    y: 17
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_31
+    hashCode: 1870221683
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300062, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 36
+    x: 156
+    y: 17
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_32
+    hashCode: 1870221680
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300064, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 37
+    x: 222
+    y: 17
+    width: 53
+    height: 53
+    xOffset: -26.5
+    yOffset: 26.5
+    xAdvance: 53
+    scale: 1
+    name: joyconButtonSpriteSheet_33
+    hashCode: 1870221681
+    unicode: 0
+    pivot: {x: -26.5, y: 26.5}
+    sprite: {fileID: 21300066, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 38
+    x: 290
+    y: 17
+    width: 52
+    height: 52
+    xOffset: -26
+    yOffset: 26
+    xAdvance: 52
+    scale: 1
+    name: joyconButtonSpriteSheet_34
+    hashCode: 1870221686
+    unicode: 0
+    pivot: {x: -26, y: 26}
+    sprite: {fileID: 21300068, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  - id: 39
+    x: 356
+    y: 17
+    width: 52
+    height: 52
+    xOffset: -26
+    yOffset: 26
+    xAdvance: 52
+    scale: 1
+    name: joyconButtonSpriteSheet_35
+    hashCode: 1870221687
+    unicode: 0
+    pivot: {x: -26, y: 26}
+    sprite: {fileID: 21300070, guid: e97b507935c52064582b2fd597751c85, type: 3}
+  fallbackSpriteAssets: []
+--- !u!21 &21574506286654838
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: TextMeshPro/Sprite
+  m_Shader: {fileID: 4800000, guid: 3a1c68c8292caf046bd21158886c5e40, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e97b507935c52064582b2fd597751c85, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
