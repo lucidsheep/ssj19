@@ -127,11 +127,6 @@ MonoBehaviour:
   interactText: 
   canInteract: 0
   disableAfterInteraction: 0
-  onInteraction:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212821892033446850
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -166,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: -2113023767
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: 893cd4428ba0140de8507b6db6ad3927, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02e715bc17c8444ba93fb90c46b891bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

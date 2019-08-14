@@ -11,6 +11,7 @@ public class MapTile : MonoBehaviour {
 
 	public float containsFoodProbability;
 	public MapTile containedFood;
+    public Sprite foodSprite;
 
 	public bool isDangerous;
 	public IntRange damageRange;
@@ -19,18 +20,35 @@ public class MapTile : MonoBehaviour {
 
     Interactable interactable;
     bool doesContainFood;
+    SpriteRenderer foodSpriteRenderer;
+    SpriteRenderer sprite;
 
 	// Use this for initialization
 	void Start () {
         interactable = GetComponent<Interactable>();
-        if(containsFoodProbability > Random.value)
+        sprite = GetComponentInChildren<SpriteRenderer>();
+
+        if (spriteVariations.Length > 0)
+            sprite.sprite = spriteVariations[Random.Range(0, spriteVariations.Length)];
+
+        if (containsFoodProbability > Random.value)
         {
             interactable.canInteract = true;
             doesContainFood = true;
-            GetComponentInChildren<SpriteRenderer>().color = Color.blue;
+
+            foodSpriteRenderer = new GameObject().AddComponent<SpriteRenderer>();
+            foodSpriteRenderer.transform.parent = this.transform;
+            foodSpriteRenderer.sortingLayerName = "Obstacle_Upper";
+            foodSpriteRenderer.transform.localPosition = new Vector3(0f, 0f, 1f);
+            foodSpriteRenderer.sprite = foodSprite;
+
+            if (tileType == TileCategory.TREE)
+            {
+                sprite.sprite = spriteVariations[3]; //hack to force a certain tree type
+                sprite.enabled = false;
+            }
         }
-        if (spriteVariations.Length > 0)
-            GetComponentInChildren<SpriteRenderer>().sprite = spriteVariations[Random.Range(0, spriteVariations.Length)];
+        
         interactable.onInteraction.AddListener(OnInteraction);
 	}
 
@@ -38,7 +56,7 @@ public class MapTile : MonoBehaviour {
     {
         if (doesContainFood)
         {
-            Transform t = GetComponentInChildren<SpriteRenderer>().transform;
+            Transform t = foodSpriteRenderer != null ? foodSpriteRenderer.transform : sprite.transform;
             DOTween.Sequence()
                 .Append(t.DOLocalMoveX(.1f, .05f).SetEase(Ease.Linear).SetRelative())
                 .Append(t.DOLocalMoveX(-.2f, .05f).SetEase(Ease.Linear).SetRelative())
@@ -49,10 +67,11 @@ public class MapTile : MonoBehaviour {
                     MapTile food = Instantiate(containedFood, transform.position, Quaternion.identity);
                     food.GetComponent<Collider2D>().enabled = false;
                     food.transform.DOMove(instigator.transform.position, .25f).SetEase(Ease.InQuad).OnComplete(() => food.GetComponent<Collider2D>().enabled = true);
+                    if (foodSpriteRenderer != null) Destroy(foodSpriteRenderer.gameObject);
+                    sprite.enabled = true;
                 });
             interactable.canInteract = false;
             doesContainFood = false;
-            GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
     }
 	// Update is called once per frame

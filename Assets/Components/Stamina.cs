@@ -10,9 +10,12 @@ public class Stamina : MonoBehaviour
 
     IntRange _stamina;
     public int defaultStamina;
+    public float defaultRecoveryPerSecond = 5;
+    public float defaultTimeToStartRecovery = 2f;
 
     float actualStamina;
     float _recoveryRate = 5f;
+    float _recoveryStartupTime;
 
     float recoveryCooldown = 0f;
 
@@ -20,6 +23,8 @@ public class Stamina : MonoBehaviour
     {
         _stamina = new IntRange(defaultStamina);
         actualStamina = defaultStamina;
+        _recoveryRate = defaultRecoveryPerSecond;
+        _recoveryStartupTime = defaultTimeToStartRecovery;
     }
 
     public void SetMaxSP(int newMax)
@@ -38,7 +43,7 @@ public class Stamina : MonoBehaviour
         if (cost > actualStamina) return false;
 
         actualStamina -= cost;
-        recoveryCooldown = 3f;
+        recoveryCooldown = _recoveryStartupTime;
         onSPChange.Invoke(-cost);
 
         return true;
