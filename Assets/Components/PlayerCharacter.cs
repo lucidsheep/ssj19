@@ -8,6 +8,7 @@ public class PlayerCharacter : Creature
 	public float defaultDashSpeed;
 
     public TextMeshPro interactTxt;
+    public Attack attackTemplate;
 
 	protected Stamina stamina;
 
@@ -20,6 +21,7 @@ public class PlayerCharacter : Creature
 	bool isDashing = false;
 	float dashLength;
 	float dashSpeed;
+    Attack attackAnim;
 
     protected override void Awake()
     {
@@ -61,12 +63,20 @@ public class PlayerCharacter : Creature
                 }
                 else
                 {
-                    //todo - attack anim
+                    StartAttack();
                 }
                 break;
         }
     }
 
+    void StartAttack()
+    {
+        if (attackAnim != null) return;
+        attackAnim = Instantiate(attackTemplate, this.transform);
+        attackAnim.transform.localPosition = Vector3.zero;
+        attackAnim.transform.localRotation = transform.localRotation;
+        attackAnim.attackDamage = strength;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Interactable iTarget = collision.gameObject.GetComponent<Interactable>();

@@ -177,6 +177,8 @@ MonoBehaviour:
   defaultDashTime: 0.1
   defaultDashSpeed: 3
   interactTxt: {fileID: 2145295630}
+  attackTemplate: {fileID: 114387285801933140, guid: 5612ceb417dc34d12b95cadf377225de,
+    type: 2}
   evolutionList: []
   actionList: []
   traitList: []
@@ -1017,6 +1019,48 @@ Transform:
   m_Father: {fileID: 2116111928}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &813760090
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761222554138514, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5612ceb417dc34d12b95cadf377225de, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &833841920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,7 +2517,7 @@ MonoBehaviour:
   - item: {fileID: 0}
     weight: 20
   - item: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb, type: 2}
-    weight: 2
+    weight: 0
   - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
     weight: 2
   tileSize:
@@ -2527,7 +2571,7 @@ MonoBehaviour:
     type: 2}
   startingTime: 30
   timeIncrement: 0
-  foodRequirement: 15
+  foodRequirement: 5
   foodRequirementIncrement: 5
 --- !u!114 &2116111931
 MonoBehaviour:

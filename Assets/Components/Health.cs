@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     public IntRange hitPoints { get { return _hitPoints; } }
 
-    public enum DamageType { PHYSICAL, FIRE, ICE, POISON };
+    public enum DamageType { PHYSICAL, FIRE, ICE, POISON, NORMAL };
     public enum DamageResilience { NORMAL, WEAK, RESIST, IMMUNE, ABSORB, REFLECT }
 
     public HPChangeEvent onHPChange = new HPChangeEvent();
@@ -30,6 +30,21 @@ public class Health : MonoBehaviour
         onHPMaxChange.Invoke(hitPoints);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var attack = collision.gameObject.GetComponent<Attack>();
+
+        if (attack != null && attack.isAttacking)
+            ReceiveDamage(attack.attackDamage, attack.attackType);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var attack = collision.gameObject.GetComponent<Attack>();
+
+        if (attack != null && attack.isAttacking)
+            ReceiveDamage(attack.attackDamage, attack.attackType);
+    }
     public void ReceiveDamage(int damage, DamageType type)
     {
         float multiplier = 1f;
