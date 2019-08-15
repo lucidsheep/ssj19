@@ -22,6 +22,7 @@ public class PlayerCharacter : Creature
 	float dashLength;
 	float dashSpeed;
     Attack attackAnim;
+    Vector2 lastMovementVector;
 
     protected override void Awake()
     {
@@ -33,7 +34,6 @@ public class PlayerCharacter : Creature
     private void Start()
     {
 		stamina = GetComponent<Stamina>();
-        controller.onButtonDown.AddListener(OnButtonDown);
     }
 
     void UpdateInteractText()
@@ -46,8 +46,9 @@ public class PlayerCharacter : Creature
     }
     protected override void OnButtonDown(Controller.Command command)
     {
-        switch(command)
+        switch (command)
         {
+            
             case Controller.Command.DASH:
                 if (!isDashing) StartDash();
                 break;
@@ -74,7 +75,9 @@ public class PlayerCharacter : Creature
         if (attackAnim != null) return;
         attackAnim = Instantiate(attackTemplate, this.transform);
         attackAnim.transform.localPosition = Vector3.zero;
-        attackAnim.transform.localRotation = transform.localRotation;
+        Vector2 dir = controller.GetJoystickDirection();
+        dir.x *= -1f;
+        attackAnim.transform.localRotation = Quaternion.Euler(0f, 0f, Util.Vector2ToAngle(dir) + 90f);
         attackAnim.attackDamage = strength;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -84,7 +87,6 @@ public class PlayerCharacter : Creature
         {
             curInteractTarget = iTarget;
             UpdateInteractText();
-            //todo - text overlay
         }
     }
 

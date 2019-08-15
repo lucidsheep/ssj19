@@ -16,8 +16,8 @@ TagManager:
   - Obstacle
   - Attack_Friendly
   - Attack_Enemy
-  - 
-  - 
+  - Creature_Friendly
+  - Creature_Enemy
   - 
   - 
   - 

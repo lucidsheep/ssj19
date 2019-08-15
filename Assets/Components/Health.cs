@@ -32,7 +32,8 @@ public class Health : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var attack = collision.gameObject.GetComponent<Attack>();
+        var attacks = collision.gameObject.GetComponents<Attack>();
+        var attack = attacks.Length == 0 ? null : attacks[0];
 
         if (attack != null && attack.isAttacking)
             ReceiveDamage(attack.attackDamage, attack.attackType);
@@ -40,7 +41,8 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var attack = collision.gameObject.GetComponent<Attack>();
+        var attacks = collision.gameObject.GetComponents<Attack>();
+        var attack = attacks.Length == 0 ? null : attacks[0];
 
         if (attack != null && attack.isAttacking)
             ReceiveDamage(attack.attackDamage, attack.attackType);
