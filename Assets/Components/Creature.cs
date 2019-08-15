@@ -27,6 +27,9 @@ public class Creature : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         speedMultiplier = defaultSpeedMultiplier;
         controller.onButtonDown.AddListener(OnButtonDown);
+        health.onHPDepleted.AddListener(OnDeath);
+        health.onInvincibilityChange.AddListener(OnInvincibilityChange);
+
     }
 
     protected virtual void Update()
@@ -37,6 +40,16 @@ public class Creature : MonoBehaviour
     }
 
     protected virtual void OnButtonDown(Controller.Command command)
+    {
+
+    }
+
+    protected virtual void OnDeath()
+    {
+
+    }
+
+    protected virtual void OnInvincibilityChange(bool isInvincible)
     {
 
     }

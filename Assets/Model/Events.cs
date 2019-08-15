@@ -11,3 +11,5 @@ public class HPUpdateEvent : UnityEvent<IntRange> { }
 public class SPChangeEvent : UnityEvent<int> { }
 public class SPUpdateEvent : UnityEvent<IntRange> { }
 public class InteractionEvent : UnityEvent<Creature> { }
+public class HPDepletedEvent : UnityEvent { }
+public class InvincibilityChangeEvent : UnityEvent<bool> { }

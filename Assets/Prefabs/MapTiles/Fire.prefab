@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310478888913008}
   - component: {fileID: 212781180429247654}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 50258334310224628}
   - component: {fileID: 58002336110346140}
   - component: {fileID: 114259778861400388}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,11 +122,6 @@ MonoBehaviour:
   interactText: 
   canInteract: 0
   disableAfterInteraction: 0
-  onInteraction:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114908770398233576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +137,7 @@ MonoBehaviour:
   isObstacle: 0
   containsFoodProbability: 0
   containedFood: {fileID: 0}
+  foodSprite: {fileID: 0}
   isDangerous: 1
   damageRange:
     first: 7

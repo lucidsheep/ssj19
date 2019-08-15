@@ -17,6 +17,7 @@ public class UIBarDisplay : MonoBehaviour {
     Tweener ratioTween;
     float ratio { get { return _ratio; } set { _ratio = value; bar.SetFill(_ratio); } }
     float _ratio = 1f;
+    bool shouldDisplay = true;
 
     float shakeTime = 0f;
     Vector3 basePosition;
@@ -45,6 +46,7 @@ public class UIBarDisplay : MonoBehaviour {
     public void OnChange(int delta)
     {
         storedValues.first += delta;
+        if (!shouldDisplay) return;
         AnimateBar(Mathf.Abs(delta) <= 5);
         if(shouldShake && delta < 0)
             Shake(.25f);
@@ -70,12 +72,14 @@ public class UIBarDisplay : MonoBehaviour {
     }
     public void ShowDisplay()
     {
+        shouldDisplay = true;
         icon.enabled = bg.enabled = true;
         bar.SetFill(ratio);
     }
 
     public void HideDisplay()
     {
+        shouldDisplay = false;
         icon.enabled = bg.enabled = false;
         if (ratioTween != null) ratioTween.Kill();
         bar.SetFill(0f);

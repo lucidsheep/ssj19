@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4512237603861790}
   - component: {fileID: 58160779164146906}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: FOV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultHP: 20
+  defaultInvincibleTime: 0
 --- !u!114 &114299215853301332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,6 +216,12 @@ MonoBehaviour:
   defaultSpeedMultiplier: 0.7
   attackSpeedMultiplier: 2
   attackTime: 0.1
+  foodOnDeath: {fileID: 1860976354385046, guid: c7c00813906eb3648a568c31e7b917cb,
+    type: 2}
+  foodDroppedRange:
+    first: 2
+    second: 4
+    _initialized: 0
 --- !u!114 &114692693808778122
 MonoBehaviour:
   m_ObjectHideFlags: 1

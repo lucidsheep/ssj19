@@ -10,18 +10,32 @@ public class Health : MonoBehaviour
 
     public HPChangeEvent onHPChange = new HPChangeEvent();
     public HPUpdateEvent onHPMaxChange = new HPUpdateEvent();
+    public HPDepletedEvent onHPDepleted = new HPDepletedEvent();
+    public InvincibilityChangeEvent onInvincibilityChange = new InvincibilityChangeEvent();
+
     public class DamageTypeReslience : LSTuple<DamageType, DamageResilience> { }
 
     List<DamageTypeReslience> damageRelationships = new List<DamageTypeReslience>();
 
     IntRange _hitPoints;
     public int defaultHP;
+    public float defaultInvincibleTime;
 
+    float invincibleTime = 0f;
     private void Awake()
     {
         _hitPoints = new IntRange(defaultHP);
     }
 
+    private void Update()
+    {
+        if (invincibleTime >= 0f)
+        {
+            invincibleTime -= Time.deltaTime;
+            if (invincibleTime <= 0f)
+                onInvincibilityChange.Invoke(false);
+        }
+    }
     public void SetMaxHP(int newMax)
     {
         _hitPoints.second = newMax;
@@ -32,18 +46,33 @@ public class Health : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var attacks = collision.gameObject.GetComponents<Attack>();
-        var attack = attacks.Length == 0 ? null : attacks[0];
-
-        if (attack != null && attack.isAttacking)
-            ReceiveDamage(attack.attackDamage, attack.attackType);
+        CheckAndHandleAttack(collision.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var attacks = collision.gameObject.GetComponents<Attack>();
+        CheckAndHandleAttack(collision.gameObject);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        CheckAndHandleAttack(collision.gameObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        CheckAndHandleAttack(collision.gameObject);
+    }
+    void CheckAndHandleAttack(GameObject source)
+    {
+        if (invincibleTime > 0f) return;
+        var attacks = source.GetComponents<Attack>();
         var attack = attacks.Length == 0 ? null : attacks[0];
 
+        if(GetComponent<EnemyCreature>() != null && attack != null)
+        {
+            Debug.Log("handle attack source " + LayerMask.LayerToName(attack.gameObject.layer));
+        }
         if (attack != null && attack.isAttacking)
             ReceiveDamage(attack.attackDamage, attack.attackType);
     }
@@ -67,6 +96,13 @@ public class Health : MonoBehaviour
         int totalDamage = Mathf.CeilToInt(damage * multiplier) * -1;
         _hitPoints.first += totalDamage;
         onHPChange.Invoke(totalDamage);
+        if (hitPoints.first <= 0)
+            onHPDepleted.Invoke();
+        else
+        {
+            invincibleTime = defaultInvincibleTime;
+            onInvincibilityChange.Invoke(true);
+        }
     }
     public DamageResilience CheckVulnerability(DamageType type)
     {

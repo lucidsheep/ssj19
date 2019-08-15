@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultHP: 100
+  defaultInvincibleTime: 0
 --- !u!50 &14754330
 Rigidbody2D:
   serializedVersion: 4
@@ -920,7 +921,7 @@ GameObject:
   - component: {fileID: 747939788}
   - component: {fileID: 747939787}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -935,11 +936,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 85f27a74c1d8d4d26bae6d275de22bdd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1940,54 +1941,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1115846770
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4951653610019216, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1130411892 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114299215853301332, guid: ff545bc3afe8645169a5fc720e8155e5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1115846770}
-  m_Script: {fileID: 11500000, guid: 4a884cc5b413244cea90f7e5f1c47b55, type: 3}
 --- !u!1 &1275500318
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,8 +2481,8 @@ MonoBehaviour:
     weight: 2
   enemyOptions:
   - item: {fileID: 0}
-    weight: 98
-  - item: {fileID: 1130411892}
+    weight: 200
+  - item: {fileID: 114299215853301332, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
     weight: 2
   tileSize:
     first: 1
@@ -2610,7 +2563,8 @@ MonoBehaviour:
   sfxChannels:
   - {fileID: 747939787}
   sfxChannelsHighPriority: []
-  bgmList: []
+  bgmList:
+  - {fileID: 8300000, guid: 85f27a74c1d8d4d26bae6d275de22bdd, type: 3}
   useCrossfade: 0
 --- !u!1 &2145295628
 GameObject:
