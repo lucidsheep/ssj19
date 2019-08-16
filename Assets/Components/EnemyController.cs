@@ -21,7 +21,6 @@ public class EnemyController : Controller
     }
     public override Vector2 GetJoystickDirection()
     {
-        if(curBehavior == BehaviorMode.ATTACK) return new Vector2();
         return curTarget - transform.position;
     }
 
@@ -52,15 +51,16 @@ public class EnemyController : Controller
                      } else if(Vector3.Distance(transform.position, curTarget) < 2f)
                     { 
                         curBehavior = BehaviorMode.ATTACK;
-                        timeToBehaviorCheck = Random.Range(.3f, .6f);
+                        curTarget = GameEngine.instance.player.transform.position;
+                        onButtonDown.Invoke(Command.ATTACK);
+                        //timeToBehaviorCheck = .75f;
                     }
                     break;
                 case BehaviorMode.ATTACK:
-                    onButtonDown.Invoke(Command.ATTACK);
                     curBehavior = BehaviorMode.CHASE;
                     break;
             }
-        } else if(curBehavior == BehaviorMode.CHASE)
+        } else if(curBehavior == BehaviorMode.CHASE || curBehavior == BehaviorMode.ATTACK)
             {
                 curTarget = GameEngine.instance.player.transform.position;
             }

@@ -14,13 +14,19 @@ public class EnemyCreature : Creature
 	{
         if(command == Controller.Command.ATTACK)
         {
-            speedMultiplier = attackSpeedMultiplier;
-            GetComponent<Attack>().isAttacking = true;
-            GetComponentInChildren<SpriteRenderer>().color = Color.red;
-            pounceTimer = TimeControl.StartTimer(attackTime, () => {
-                speedMultiplier = defaultSpeedMultiplier;
-                GetComponent<Attack>().isAttacking = false;
-                GetComponentInChildren<SpriteRenderer>().color = Color.white;
+            speedMultiplier = 0f;
+            float stareTime = Random.Range(.2f, .4f);
+            GetComponentInChildren<SpriteRenderer>().DOColor(Color.red, stareTime);
+            pounceTimer = TimeControl.StartTimer(stareTime, () => {
+                speedMultiplier = attackSpeedMultiplier;
+                GetComponent<Attack>().isAttacking = true;
+                pounceTimer = TimeControl.StartTimer(attackTime, () =>
+                {
+                    speedMultiplier = defaultSpeedMultiplier;
+                    GetComponent<Attack>().isAttacking = false;
+                    GetComponentInChildren<SpriteRenderer>().color = Color.white;
+                });
+                
             });
         }
 	}

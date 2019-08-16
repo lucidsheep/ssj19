@@ -51,11 +51,6 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GetComponent<EnemyCreature>() != null)
-        {
-            Debug.Log("ontriggerenter");
-            Debug.Log(collision.ToString());
-        }
         CheckAndHandleAttack(collision.gameObject);
     }
 
@@ -77,11 +72,13 @@ public class Health : MonoBehaviour
         foreach (Attack atk in source.GetComponentsInParent<Attack>()) attacks.Add(atk);
         if (attacks.Count == 0) return;
         var attack = attacks[0];
-        if (attack != null && attack.isAttacking)
+        if (attack != null && attack.isAttacking && source.tag == "Dangerous")
             ReceiveDamage(attack.attackDamage, attack.attackType);
     }
     public void ReceiveDamage(int damage, DamageType type)
     {
+        if (invincibleTime > 0f) return;
+
         float multiplier = 1f;
 
         var relationship = CheckVulnerability(type);

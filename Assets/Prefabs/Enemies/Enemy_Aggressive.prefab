@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114254734354113764}
   m_Layer: 12
   m_Name: Enemy_Aggressive
-  m_TagString: Untagged
+  m_TagString: Dangerous
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,10 +214,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultStrength: 5
-  defaultAgility: 5
+  defaultAgility: 3
   defaultSpeedMultiplier: 0.7
-  attackSpeedMultiplier: 2
-  attackTime: 0.1
+  attackSpeedMultiplier: 4
+  attackTime: 0.5
   foodOnDeath: {fileID: 1860976354385046, guid: c7c00813906eb3648a568c31e7b917cb,
     type: 2}
   foodDroppedRange:
