@@ -12,4 +12,9 @@ public class SwordAttack : Attack
 
         return true;
     }
+
+    void Update()
+    {
+
+    }
 }

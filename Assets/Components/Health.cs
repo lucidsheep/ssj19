@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Health : MonoBehaviour
 {
     public IntRange hitPoints { get { return _hitPoints; } }
-
+    public SpriteBlinker blinkAnim;
     public enum DamageType { PHYSICAL, FIRE, ICE, POISON, NORMAL };
     public enum DamageResilience { NORMAL, WEAK, RESIST, IMMUNE, ABSORB, REFLECT }
 
@@ -51,6 +51,11 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (GetComponent<EnemyCreature>() != null)
+        {
+            Debug.Log("ontriggerenter");
+            Debug.Log(collision.ToString());
+        }
         CheckAndHandleAttack(collision.gameObject);
     }
 
@@ -65,14 +70,13 @@ public class Health : MonoBehaviour
     }
     void CheckAndHandleAttack(GameObject source)
     {
-        if (invincibleTime > 0f) return;
-        var attacks = source.GetComponents<Attack>();
-        var attack = attacks.Length == 0 ? null : attacks[0];
-
-        if(GetComponent<EnemyCreature>() != null && attack != null)
-        {
-            Debug.Log("handle attack source " + LayerMask.LayerToName(attack.gameObject.layer));
-        }
+        if (invincibleTime > 0f)
+            return;
+        List<Attack> attacks = new List<Attack>();
+        foreach (Attack atk in source.GetComponents<Attack>()) attacks.Add(atk);
+        foreach (Attack atk in source.GetComponentsInParent<Attack>()) attacks.Add(atk);
+        if (attacks.Count == 0) return;
+        var attack = attacks[0];
         if (attack != null && attack.isAttacking)
             ReceiveDamage(attack.attackDamage, attack.attackType);
     }
@@ -102,6 +106,8 @@ public class Health : MonoBehaviour
         {
             invincibleTime = defaultInvincibleTime;
             onInvincibilityChange.Invoke(true);
+            if (blinkAnim != null)
+                blinkAnim.StartAnim(invincibleTime);
         }
     }
     public DamageResilience CheckVulnerability(DamageType type)

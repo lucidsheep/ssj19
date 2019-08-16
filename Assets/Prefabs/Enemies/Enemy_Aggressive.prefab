@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4764523920712148}
   - component: {fileID: 212946969594173706}
+  - component: {fileID: 114753826413527600}
   m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
@@ -198,8 +199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6272f6374d84e4643a28be7110d44db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blinkAnim: {fileID: 114753826413527600}
   defaultHP: 20
-  defaultInvincibleTime: 0
+  defaultInvincibleTime: 0.5
 --- !u!114 &114299215853301332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +238,20 @@ MonoBehaviour:
   defaultStamina: 100
   defaultRecoveryPerSecond: 20
   defaultTimeToStartRecovery: 2
+--- !u!114 &114753826413527600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967389089138572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496defb3dadd5554eb02f74cb02ac639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkDuration: 0
+  blinkInterval: 0.1
+  autoStart: 0
 --- !u!212 &212946969594173706
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -36,6 +36,13 @@ public class PlayerCharacter : Creature
 		stamina = GetComponent<Stamina>();
     }
 
+    override protected void Update()
+    {
+        base.Update();
+        if(controller.GetJoystickDirection() != Vector2.zero)
+            lastMovementVector = controller.GetJoystickDirection();
+    }
+
     void UpdateInteractText()
     {
         if (curInteractTarget == null) interactTxt.SetText("");
@@ -75,7 +82,7 @@ public class PlayerCharacter : Creature
         if (attackAnim != null) return;
         attackAnim = Instantiate(attackTemplate, this.transform);
         attackAnim.transform.localPosition = Vector3.zero;
-        Vector2 dir = controller.GetJoystickDirection();
+        Vector2 dir = lastMovementVector;
         dir.x *= -1f;
         attackAnim.transform.localRotation = Quaternion.Euler(0f, 0f, Util.Vector2ToAngle(dir) + 90f);
         attackAnim.attackDamage = strength;

@@ -193,8 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6272f6374d84e4643a28be7110d44db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blinkAnim: {fileID: 1467983326}
   defaultHP: 100
-  defaultInvincibleTime: 0
+  defaultInvincibleTime: 1
 --- !u!50 &14754330
 Rigidbody2D:
   serializedVersion: 4
@@ -2085,6 +2086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1467983324}
   - component: {fileID: 1467983325}
+  - component: {fileID: 1467983326}
   m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
@@ -2149,6 +2151,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1467983326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1467983323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496defb3dadd5554eb02f74cb02ac639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkDuration: 0
+  blinkInterval: 0.1
+  autoStart: 0
 --- !u!1 &1772086276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,7 +2497,7 @@ MonoBehaviour:
     weight: 2
   enemyOptions:
   - item: {fileID: 0}
-    weight: 200
+    weight: 400
   - item: {fileID: 114299215853301332, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
     weight: 2
   tileSize:
