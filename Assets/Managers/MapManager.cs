@@ -20,6 +20,9 @@ public class MapManager : MonoBehaviour {
 	LSWeightedList<MapTile> mapTiles;
     LSWeightedList<EnemyCreature> enemies;
 
+    List<MapTile> mapTileObjects = new List<MapTile>();
+
+
 	void Awake()
 	{
 		instance = this;
@@ -39,18 +42,33 @@ public class MapManager : MonoBehaviour {
 
 	void GenerateMap(int size, int difficulty)
 	{
-		Util.DoubleLoop(size, size, (x, y) =>
+        LSWeightedList<MapTile> adjacencyMapTiles = new LSWeightedList<MapTile>();
+        foreach (LSWeightedItem<MapTile> tile in mapTiles)
+            if(tile.item != null)
+                adjacencyMapTiles.Add(new LSWeightedItem<MapTile>(tile.item, 0));
+
+        Util.DoubleLoop(size, size, (x, y) =>
 		{
 			MapTile baseTile = Instantiate(groundTile, new Vector3(x * tileSize.x, y * tileSize.y, 0f), Quaternion.identity);
-
+            Vector3 pos = new Vector3(x * tileSize.x, y * tileSize.y, 0f);
+            foreach(MapTile t in mapTileObjects.FindAll(i => Vector3.Distance(i.transform.position, pos) <= 1.05f))
+            {
+                adjacencyMapTiles.Find(i => i.item.tileType == t.tileType).weight += t.adjacencyBonus;
+                mapTiles.Find(i => i.item != null && i.item.tileType == t.tileType).weight += t.adjacencyBonus;
+            }
 			MapTile randomTile = mapTiles.GetRandomItem();
+            foreach(LSWeightedItem<MapTile> t in adjacencyMapTiles.FindAll(i => i.weight > 0))
+            {
+                mapTiles.Find(i => i.item != null && i.item.tileType == t.item.tileType).weight -= t.weight;
+                t.weight = 0;
+            }
 			if(randomTile != null)
-				Instantiate(randomTile, new Vector3(x * tileSize.x, y * tileSize.y, 0f), Quaternion.identity);
+				mapTileObjects.Add(Instantiate(randomTile, pos, Quaternion.identity));
             else
             {
                 var randomEnemy = enemies.GetRandomItem();
                 if(randomEnemy != null)
-                    Instantiate(randomEnemy, new Vector3(x * tileSize.x, y * tileSize.y, 0f), Quaternion.identity);
+                    Instantiate(randomEnemy, pos, Quaternion.identity);
 
             }
         });

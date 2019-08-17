@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 0
+  adjacencyBonus: 10
   isObstacle: 1
   containsFoodProbability: 0.5
   containedFood: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb,

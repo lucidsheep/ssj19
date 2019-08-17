@@ -7,6 +7,8 @@ public class MapTile : MonoBehaviour {
 
 	public enum TileCategory { TREE, WATER, THORNS, ROCK, FIRE, FOOD, GROUND }
     public TileCategory tileType;
+    public int adjacencyBonus;
+
 	public bool isObstacle;
 
 	public float containsFoodProbability;

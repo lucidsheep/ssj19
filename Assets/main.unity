@@ -2490,7 +2490,7 @@ MonoBehaviour:
   - item: {fileID: 114908770398233576, guid: a1b15235b407b4a948ef39215d8beb0b, type: 2}
     weight: 3
   - item: {fileID: 0}
-    weight: 20
+    weight: 30
   - item: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb, type: 2}
     weight: 0
   - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
