@@ -69,10 +69,10 @@ public class MapManager : MonoBehaviour {
                     mapTileObjects.Add(Instantiate(randomTile, pos, Quaternion.identity));
                 else
                 {
-                    var randomEnemy = enemies.GetRandomItem();
-                    if (randomEnemy != null)
+                    Util.Maybe(enemies.GetRandomItem(), randomEnemy =>
+                    {
                         Instantiate(randomEnemy, pos, Quaternion.identity);
-
+                    });
                 }
             }
         });
