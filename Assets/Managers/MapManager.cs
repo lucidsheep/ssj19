@@ -46,30 +46,34 @@ public class MapManager : MonoBehaviour {
         foreach (LSWeightedItem<MapTile> tile in mapTiles)
             if(tile.item != null)
                 adjacencyMapTiles.Add(new LSWeightedItem<MapTile>(tile.item, 0));
-
+        Vector3 midPoint = new Vector3(size / 2f, size / 2f, 0f);
         Util.DoubleLoop(size, size, (x, y) =>
 		{
 			MapTile baseTile = Instantiate(groundTile, new Vector3(x * tileSize.x, y * tileSize.y, 0f), Quaternion.identity);
             Vector3 pos = new Vector3(x * tileSize.x, y * tileSize.y, 0f);
-            foreach(MapTile t in mapTileObjects.FindAll(i => Vector3.Distance(i.transform.position, pos) <= 1.05f))
-            {
-                adjacencyMapTiles.Find(i => i.item.tileType == t.tileType).weight += t.adjacencyBonus;
-                mapTiles.Find(i => i.item != null && i.item.tileType == t.tileType).weight += t.adjacencyBonus;
-            }
-			MapTile randomTile = mapTiles.GetRandomItem();
-            foreach(LSWeightedItem<MapTile> t in adjacencyMapTiles.FindAll(i => i.weight > 0))
-            {
-                mapTiles.Find(i => i.item != null && i.item.tileType == t.item.tileType).weight -= t.weight;
-                t.weight = 0;
-            }
-			if(randomTile != null)
-				mapTileObjects.Add(Instantiate(randomTile, pos, Quaternion.identity));
-            else
-            {
-                var randomEnemy = enemies.GetRandomItem();
-                if(randomEnemy != null)
-                    Instantiate(randomEnemy, pos, Quaternion.identity);
 
+            if (Vector3.Distance(pos, midPoint) >= 5f)
+            {
+                foreach (MapTile t in mapTileObjects.FindAll(i => Vector3.Distance(i.transform.position, pos) <= 1.05f))
+                {
+                    adjacencyMapTiles.Find(i => i.item.tileType == t.tileType).weight += t.adjacencyBonus;
+                    mapTiles.Find(i => i.item != null && i.item.tileType == t.tileType).weight += t.adjacencyBonus;
+                }
+                MapTile randomTile = mapTiles.GetRandomItem();
+                foreach (LSWeightedItem<MapTile> t in adjacencyMapTiles.FindAll(i => i.weight > 0))
+                {
+                    mapTiles.Find(i => i.item != null && i.item.tileType == t.item.tileType).weight -= t.weight;
+                    t.weight = 0;
+                }
+                if (randomTile != null)
+                    mapTileObjects.Add(Instantiate(randomTile, pos, Quaternion.identity));
+                else
+                {
+                    var randomEnemy = enemies.GetRandomItem();
+                    if (randomEnemy != null)
+                        Instantiate(randomEnemy, pos, Quaternion.identity);
+
+                }
             }
         });
 	}
