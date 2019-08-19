@@ -107,6 +107,13 @@ public class Health : MonoBehaviour
                 blinkAnim.StartAnim(invincibleTime);
         }
     }
+
+    public void RestoreHealth(int amount)
+    {
+        int before = _hitPoints.first;
+        _hitPoints.first = Mathf.Min(_hitPoints.first + amount, _hitPoints.second);
+        onHPChange.Invoke(_hitPoints.first - before);
+    }
     public DamageResilience CheckVulnerability(DamageType type)
     {
         DamageResilience ret = DamageResilience.NORMAL;

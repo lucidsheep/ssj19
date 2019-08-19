@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 58002336110346140}
   - component: {fileID: 114259778861400388}
   m_Layer: 10
-  m_Name: Fire
+  m_Name: Magma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,13 +138,14 @@ MonoBehaviour:
   isObstacle: 0
   containsFoodProbability: 0
   containedFood: {fileID: 0}
-  foodSprite: {fileID: 0}
+  sprite: {fileID: 212781180429247654}
+  foodSpriteRenderer: {fileID: 0}
   isDangerous: 1
   damageRange:
-    first: 7
+    first: 15
     second: 35
     _initialized: 0
-  spriteVariations: []
+  damageType: 1
 --- !u!212 &212781180429247654
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -179,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: -966431889
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21302450, guid: 893cd4428ba0140de8507b6db6ad3927, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa3e2181d4e4bbc4d9abfae7acb75318, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

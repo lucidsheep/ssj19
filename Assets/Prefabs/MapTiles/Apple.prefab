@@ -122,11 +122,6 @@ MonoBehaviour:
   interactText: 
   canInteract: 0
   disableAfterInteraction: 0
-  onInteraction:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114517796026169814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,15 +134,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 5
+  adjacencyBonus: 0
   isObstacle: 0
   containsFoodProbability: 0
   containedFood: {fileID: 0}
+  sprite: {fileID: 212889252573132488}
+  foodSpriteRenderer: {fileID: 0}
   isDangerous: 0
   damageRange:
     first: 0
     second: 0
     _initialized: 0
-  spriteVariations: []
 --- !u!212 &212889252573132488
 SpriteRenderer:
   m_ObjectHideFlags: 1

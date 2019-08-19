@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class MapManager : MonoBehaviour {
     LSWeightedList<EnemyCreature> enemies;
 
     List<MapTile> mapTileObjects = new List<MapTile>();
+    List<MapTile> mapTileBaseObjects = new List<MapTile>();
+    List<EnemyCreature> enemyObjects = new List<EnemyCreature>();
 
 
 	void Awake()
@@ -37,11 +40,13 @@ public class MapManager : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		GenerateMap(50, 10);
+		
 	}
 
-	void GenerateMap(int size, int difficulty)
+	public void GenerateMap(int size, int difficulty)
 	{
+        ClearMap();
+
         LSWeightedList<MapTile> adjacencyMapTiles = new LSWeightedList<MapTile>();
         foreach (LSWeightedItem<MapTile> tile in mapTiles)
             if(tile.item != null)
@@ -50,6 +55,7 @@ public class MapManager : MonoBehaviour {
         Util.DoubleLoop(size, size, (x, y) =>
 		{
 			MapTile baseTile = Instantiate(groundTile, new Vector3(x * tileSize.x, y * tileSize.y, 0f), Quaternion.identity);
+            mapTileBaseObjects.Add(baseTile);
             Vector3 pos = new Vector3(x * tileSize.x, y * tileSize.y, 0f);
 
             if (Vector3.Distance(pos, midPoint) >= 5f)
@@ -71,12 +77,34 @@ public class MapManager : MonoBehaviour {
                 {
                     Util.Maybe(enemies.GetRandomItem(), randomEnemy =>
                     {
-                        Instantiate(randomEnemy, pos, Quaternion.identity);
+                        enemyObjects.Add(Instantiate(randomEnemy, pos, Quaternion.identity));
                     });
                 }
             }
         });
 	}
+
+    internal void ProcessBiome(Biome currentBiome)
+    {
+        foreach(var tileMod in currentBiome.tileAdjustments)
+        {
+            Util.Maybe(mapTiles.Find(x => x.item != null && x.item.tileType == tileMod.item.tileType), justTile =>
+            {
+                justTile.weight = Mathf.Max(0, justTile.weight + tileMod.weight);
+            });
+        }
+    }
+
+    void ClearMap()
+    {
+        foreach (var tile in mapTileBaseObjects) Destroy(tile.gameObject);
+        foreach (var tile in mapTileObjects) Destroy(tile.gameObject);
+        foreach (var enemy in enemyObjects) if(enemy != null && enemy.gameObject != null) Destroy(enemy.gameObject);
+
+        mapTileBaseObjects = new List<MapTile>();
+        mapTileObjects = new List<MapTile>();
+        enemyObjects = new List<EnemyCreature>();
+    }
 	// Update is called once per frame
 	void Update () {
 		

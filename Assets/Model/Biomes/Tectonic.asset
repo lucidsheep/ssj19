@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb34cf2ff7d97143b179d000d937043, type: 3}
+  m_Name: Tectonic
+  m_EditorClassIdentifier: 
+  type: 3
+  biomeName: Tectonic Shift
+  biomeProphecy: I predict a great earthquake, and magma!
+  tileAdjustments:
+  - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
+    weight: 2
+  - item: {fileID: 114908770398233576, guid: a1b15235b407b4a948ef39215d8beb0b, type: 2}
+    weight: -1
+  - item: {fileID: 114127715075575378, guid: 055253f967e030746aff8794d546df87, type: 2}
+    weight: 2

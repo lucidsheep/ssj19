@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class MapTile : MonoBehaviour {
 
-	public enum TileCategory { TREE, WATER, THORNS, ROCK, FIRE, FOOD, GROUND }
+	public enum TileCategory { TREE, WATER, THORNS, ROCK, FIRE, FOOD, GROUND, CHASM, BUSH, MUSHROOM }
     public TileCategory tileType;
     public int adjacencyBonus;
 
@@ -13,42 +13,29 @@ public class MapTile : MonoBehaviour {
 
 	public float containsFoodProbability;
 	public MapTile containedFood;
-    public Sprite foodSprite;
+    public SpriteRenderer sprite;
+    public SpriteRenderer foodSpriteRenderer;
 
-	public bool isDangerous;
+    public bool isDangerous;
 	public IntRange damageRange;
-
-    public Sprite[] spriteVariations;
+    public Health.DamageType damageType;
 
     Interactable interactable;
     bool doesContainFood;
-    SpriteRenderer foodSpriteRenderer;
-    SpriteRenderer sprite;
+
 
 	// Use this for initialization
 	void Start () {
         interactable = GetComponent<Interactable>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
-
-        if (spriteVariations.Length > 0)
-            sprite.sprite = spriteVariations[Random.Range(0, spriteVariations.Length)];
 
         if (containsFoodProbability > Random.value)
         {
             interactable.canInteract = true;
             doesContainFood = true;
-
-            foodSpriteRenderer = new GameObject().AddComponent<SpriteRenderer>();
-            foodSpriteRenderer.transform.parent = this.transform;
-            foodSpriteRenderer.sortingLayerName = "Obstacle_Upper";
-            foodSpriteRenderer.transform.localPosition = new Vector3(0f, 0f, 1f);
-            foodSpriteRenderer.sprite = foodSprite;
-
-            if (tileType == TileCategory.TREE)
-            {
-                sprite.sprite = spriteVariations[3]; //hack to force a certain tree type
-                sprite.enabled = false;
-            }
+            if (tileType != TileCategory.WATER) sprite.enabled = false;
+        } else if(foodSpriteRenderer != null)
+        {
+            Destroy(foodSpriteRenderer.gameObject);
         }
         
         interactable.onInteraction.AddListener(OnInteraction);
@@ -74,6 +61,9 @@ public class MapTile : MonoBehaviour {
                 });
             interactable.canInteract = false;
             doesContainFood = false;
+
+            if (tileType == TileCategory.MUSHROOM)
+                GameEngine.instance.player.GetComponent<Health>().ReceiveDamage(Random.Range(5, 15), Health.DamageType.POISON);
         }
     }
 	// Update is called once per frame
@@ -95,7 +85,7 @@ public class MapTile : MonoBehaviour {
         }
         else if(isDangerous && collision.gameObject.GetComponent<Health>() != null)
         {
-            collision.gameObject.GetComponent<Health>().ReceiveDamage(Random.Range(damageRange.first, damageRange.second), Health.DamageType.FIRE);
+            collision.gameObject.GetComponent<Health>().ReceiveDamage(Random.Range(damageRange.first, damageRange.second), damageType);
         }
     }
 }

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4602810412118746}
   - component: {fileID: 212821892033446850}
+  - component: {fileID: 114717869609067888}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -104,15 +105,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: 6
+  adjacencyBonus: 0
   isObstacle: 0
   containsFoodProbability: 0
   containedFood: {fileID: 0}
+  sprite: {fileID: 212821892033446850}
+  foodSpriteRenderer: {fileID: 0}
   isDangerous: 0
   damageRange:
     first: 0
     second: 0
     _initialized: 0
-  spriteVariations: []
 --- !u!114 &114311347449434898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +130,26 @@ MonoBehaviour:
   interactText: 
   canInteract: 0
   disableAfterInteraction: 0
+--- !u!114 &114717869609067888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064591737807816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa97733f02618774f95723d8249c0246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variations:
+  - first: {fileID: 21300000, guid: d38ab0cde0d9ebf46b36e0e8c8943560, type: 3}
+    second: 0
+  - first: {fileID: 21300000, guid: a254b627f47fb5c4c8168ab63a723471, type: 3}
+    second: 2
+  - first: {fileID: 21300000, guid: 135a6fc0d0d326b4e9ed12c57c5a60a1, type: 3}
+    second: 4
+  - first: {fileID: 21300000, guid: 143dc8114f9ba5048b3059aeaf2cbef4, type: 3}
+    second: 1
 --- !u!212 &212821892033446850
 SpriteRenderer:
   m_ObjectHideFlags: 1

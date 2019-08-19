@@ -89,18 +89,37 @@ public class PlayerCharacter : Creature
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Interactable iTarget = collision.gameObject.GetComponent<Interactable>();
-        if(curInteractTarget == null && iTarget != null && iTarget.canInteract)
+        CheckInteractionEnter(collision.gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        CheckInteractionEnter(collider.gameObject);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        CheckInteractionExit(collision.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        CheckInteractionExit(collider.gameObject);
+    }
+
+    void CheckInteractionEnter(GameObject obj)
+    {
+        Interactable iTarget = obj.GetComponent<Interactable>();
+        if (curInteractTarget == null && iTarget != null && iTarget.canInteract)
         {
             curInteractTarget = iTarget;
             UpdateInteractText();
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void CheckInteractionExit(GameObject obj)
     {
-        Interactable iTarget = collision.gameObject.GetComponent<Interactable>();
-        if(curInteractTarget != null && iTarget != null && curInteractTarget.Equals(iTarget))
+        Interactable iTarget = obj.GetComponent<Interactable>();
+        if (curInteractTarget != null && iTarget != null && curInteractTarget.Equals(iTarget))
         {
             curInteractTarget = null;
             UpdateInteractText();

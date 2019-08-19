@@ -59,7 +59,7 @@ public class UIBarDisplay : MonoBehaviour {
     public void OnMaxChange(IntRange newRange)
     {
         storedValues = newRange;
-        AnimateBar();
+        AnimateBar(true);
     }
 
     void AnimateBar(bool instant = false)
@@ -74,7 +74,7 @@ public class UIBarDisplay : MonoBehaviour {
     {
         shouldDisplay = true;
         icon.enabled = bg.enabled = true;
-        bar.SetFill(ratio);
+        ratio = (float)storedValues.first / (float)storedValues.second;
     }
 
     public void HideDisplay()
