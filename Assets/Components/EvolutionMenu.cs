@@ -17,7 +17,8 @@ public class EvolutionMenu : MonoBehaviour
 
     private void Start()
     {
-        GenerateMenu(3);
+        bool isSexy = GameEngine.instance.player.HasTrait(Trait.Type.ENHANCED_MATING);
+        GenerateMenu(isSexy ? 5 : 3);
         controller = ReInput.players.GetPlayer(0);
     }
 

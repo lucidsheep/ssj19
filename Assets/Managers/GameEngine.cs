@@ -48,7 +48,7 @@ public class GameEngine : MonoBehaviour
     {
         PickBiome();
         TimeControl.StartTimer(.1f, () =>
-            StartGathering());
+            StartMating());
         player.GetComponent<Health>().onHPDepleted.AddListener(EndGathering);
     }
     void StartGathering()
@@ -100,9 +100,7 @@ public class GameEngine : MonoBehaviour
         {
             if (foodGathered >= foodRequirement && player.GetComponent<Health>().hitPoints.first > 0)
             {
-                Instantiate(evoMenuTemplate, Camera.main.gameObject.transform);
-                onMatingPhase.Invoke();
-                titleText.SetText("Choose Your Mate");
+                StartMating();
             }
             else
             {
@@ -112,6 +110,14 @@ public class GameEngine : MonoBehaviour
             player.transform.position = new Vector3(25f, 25f, 0f);
         });
         
+    }
+
+    void StartMating()
+    {
+        inGatheringPhase = false;
+        Instantiate(evoMenuTemplate, Camera.main.gameObject.transform);
+        onMatingPhase.Invoke();
+        titleText.SetText("Choose Your Mate");
     }
     public void AddEvolution(Evolution evolution)
     {

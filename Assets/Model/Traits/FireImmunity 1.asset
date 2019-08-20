@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1939d35d3d68f434494573ebaf8697f3, type: 3}
-  m_Name: FireImmunity
+  m_Name: FireImmunity 1
   m_EditorClassIdentifier: 
   id: 0
   value: 30
   abilityType: 1
   isRecessive: 0
-  abilityName: Fireproof Skin
+  abilityName: Improved Homeostasis
   abilityDescription: You receive no damage from fire
   type: 0

@@ -37,6 +37,7 @@ public class EnemyCreature : Creature
         if (pounceTimer != null) TimeControl.RemoveTimer(pounceTimer.id);
         //todo - turn into corpse
         int foodToDrop = foodDroppedRange.second == 0 ? 0 : Random.Range(foodDroppedRange.first, foodDroppedRange.second + 1);
+        if (GameEngine.instance.player.HasTrait(Trait.Type.HUNTER)) foodToDrop *= 2;
         while(foodToDrop > 0)
         {
             var food = Instantiate(foodOnDeath, transform.position, Quaternion.identity);

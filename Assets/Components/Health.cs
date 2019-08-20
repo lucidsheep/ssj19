@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Health : MonoBehaviour
 {
-    public IntRange hitPoints { get { return _hitPoints; } }
+    public IntRange hitPoints { get { return new IntRange(Mathf.FloorToInt(actualHitPoints), _hitPoints.second); } }
     public SpriteBlinker blinkAnim;
     public enum DamageType { PHYSICAL, FIRE, ICE, POISON, NORMAL };
     public enum DamageResilience { NORMAL, WEAK, RESIST, IMMUNE, ABSORB, REFLECT }
@@ -13,7 +13,13 @@ public class Health : MonoBehaviour
     public HPDepletedEvent onHPDepleted = new HPDepletedEvent();
     public InvincibilityChangeEvent onInvincibilityChange = new InvincibilityChangeEvent();
 
-    public class DamageTypeReslience : LSTuple<DamageType, DamageResilience> { }
+    public class DamageTypeReslience : LSTuple<DamageType, DamageResilience> {
+        public DamageTypeReslience(DamageType t, DamageResilience r)
+        {
+            first = t;
+            second = r;
+        }
+    }
 
     List<DamageTypeReslience> damageRelationships = new List<DamageTypeReslience>();
 
@@ -21,10 +27,23 @@ public class Health : MonoBehaviour
     public int defaultHP;
     public float defaultInvincibleTime;
 
+    
+    public float defaultRecoveryPerSecond = 5;
+    public float defaultTimeToStartRecovery = 5f;
+
+    float _recoveryRate = 5f;
+    float _recoveryStartupTime;
+
+    float actualHitPoints;
+
+    float recoveryCooldown;
     float invincibleTime = 0f;
     private void Awake()
     {
         _hitPoints = new IntRange(defaultHP);
+        actualHitPoints = _hitPoints.first;
+        _recoveryRate = defaultRecoveryPerSecond;
+        _recoveryStartupTime = defaultTimeToStartRecovery;
     }
 
     private void Update()
@@ -35,15 +54,31 @@ public class Health : MonoBehaviour
             if (invincibleTime <= 0f)
                 onInvincibilityChange.Invoke(false);
         }
+        if (recoveryCooldown > 0f)
+            recoveryCooldown -= Time.deltaTime;
+        else if (actualHitPoints < _hitPoints.second)
+        {
+            float delta = Time.deltaTime * _recoveryRate;
+            int before = hitPoints.first;
+            actualHitPoints = actualHitPoints + delta >= hitPoints.second ? hitPoints.second : actualHitPoints + delta;
+
+            int intDelta = hitPoints.first - before;
+            if (intDelta > 0)
+                onHPChange.Invoke(intDelta);
+        }
     }
     public void SetMaxHP(int newMax)
     {
         _hitPoints.second = newMax;
-        if (hitPoints.first > hitPoints.second) _hitPoints.first = hitPoints.second;
+        if (actualHitPoints > hitPoints.second) actualHitPoints = hitPoints.second;
 
         onHPMaxChange.Invoke(hitPoints);
     }
 
+    public void SetRecoveryRate(float newRate)
+    {
+        _recoveryRate = newRate;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckAndHandleAttack(collision.gameObject);
@@ -95,9 +130,10 @@ public class Health : MonoBehaviour
             default: break;
         }
         int totalDamage = Mathf.CeilToInt(damage * multiplier) * -1;
-        _hitPoints.first += totalDamage;
+        actualHitPoints += totalDamage;
         onHPChange.Invoke(totalDamage);
-        if (hitPoints.first <= 0)
+        recoveryCooldown = _recoveryStartupTime;
+        if (actualHitPoints <= 0f)
             onHPDepleted.Invoke();
         else
         {
@@ -110,9 +146,9 @@ public class Health : MonoBehaviour
 
     public void RestoreHealth(int amount)
     {
-        int before = _hitPoints.first;
-        _hitPoints.first = Mathf.Min(_hitPoints.first + amount, _hitPoints.second);
-        onHPChange.Invoke(_hitPoints.first - before);
+        float before = actualHitPoints;
+        actualHitPoints = Mathf.Min(actualHitPoints + amount, _hitPoints.second);
+        onHPChange.Invoke(Mathf.FloorToInt(actualHitPoints - before));
     }
     public DamageResilience CheckVulnerability(DamageType type)
     {
@@ -126,6 +162,12 @@ public class Health : MonoBehaviour
         return ret;
     }
 
+    public void AddResilience(DamageType damage, DamageResilience newRes)
+    {
+        var curRes = CheckVulnerability(damage);
+        if (curRes != newRes && GetResiliencePriority(curRes, newRes) == newRes)
+            damageRelationships.Add(new DamageTypeReslience(damage, newRes));
+    }
     DamageResilience GetResiliencePriority(DamageResilience a, DamageResilience b)
     {
         if (a == DamageResilience.REFLECT || b == DamageResilience.REFLECT) return DamageResilience.REFLECT;

@@ -45,6 +45,28 @@ public class MapTile : MonoBehaviour {
     {
         if (doesContainFood)
         {
+            string failText = "";;
+            
+            switch(tileType)
+            {
+                case TileCategory.TREE:
+                    if(!GameEngine.instance.player.HasTrait(Trait.Type.INTERACT_TREE))
+                    {
+                        failText = "I can't reach it!";
+                    }
+                    break;
+                case TileCategory.WATER:
+                    if (!GameEngine.instance.player.HasTrait(Trait.Type.INTERACT_TREE))
+                    {
+                        failText = "The fish are too deep!";
+                    }
+                    break;
+            }
+            if(failText != "")
+            {
+                GameEngine.instance.player.UpdateInteractText(failText);
+                return;
+            }
             Transform t = foodSpriteRenderer != null ? foodSpriteRenderer.transform : sprite.transform;
             DOTween.Sequence()
                 .Append(t.DOLocalMoveX(.1f, .05f).SetEase(Ease.Linear).SetRelative())

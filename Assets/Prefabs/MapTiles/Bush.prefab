@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 58292788388711520}
   - component: {fileID: 114507115341720062}
   m_Layer: 8
-  m_Name: Tree
+  m_Name: Bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e92d7d3b50245c6b0d2743b74f22b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: Grab
+  interactText: Shake
   canInteract: 0
   disableAfterInteraction: 0
 --- !u!114 &114517796026169814
@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0242f770a9f77485893d4c0abe20f9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: 0
-  adjacencyBonus: 10
+  tileType: 8
+  adjacencyBonus: 5
   isObstacle: 1
   containsFoodProbability: 0.5
   containedFood: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb,
@@ -191,11 +191,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   variations:
-  - first: {fileID: 21300000, guid: d0221f7b4234c814fb239ce0649c2dfd, type: 3}
+  - first: {fileID: 21300000, guid: 96b6e35633335f549a155ebad5fbc991, type: 3}
     second: 0
-  - first: {fileID: 21300000, guid: 452e9c82da782cf40b373a9cde59660b, type: 3}
+  - first: {fileID: 21300000, guid: 3fc3ef1fbaa4dd5498b27338da74aa54, type: 3}
     second: 2
-  - first: {fileID: 21300000, guid: fc951ecdb91492c419f527d4a1178772, type: 3}
+  - first: {fileID: 21300000, guid: 37d066bd47f705f46a8db309045cfc29, type: 3}
     second: 4
 --- !u!114 &114907186492220830
 MonoBehaviour:
@@ -209,11 +209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   variations:
-  - first: {fileID: 21300000, guid: 89d626b4f4fa73f4d95ed02149b819b4, type: 3}
+  - first: {fileID: 21300000, guid: baff554b60b5d8d479e22e71580ce837, type: 3}
     second: 0
-  - first: {fileID: 21300000, guid: 5b2c329a495d49c4085eaeec701e06a3, type: 3}
+  - first: {fileID: 21300000, guid: c0d66592ca920a943a026c3f0c2a395e, type: 3}
     second: 2
-  - first: {fileID: 21300000, guid: 2be82a8a731f4ba46bb8933237fb5ada, type: 3}
+  - first: {fileID: 21300000, guid: e9231242c38de1b4a9c2c59ec22bb0e9, type: 3}
     second: 4
 --- !u!212 &212889252573132488
 SpriteRenderer:
@@ -249,7 +249,7 @@ SpriteRenderer:
   m_SortingLayerID: -966431889
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 87ce33a2b4b7d492fb0de68ed9b15eb8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: baff554b60b5d8d479e22e71580ce837, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayerID: -966431889
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 57cf148eb7b9946b099eba9dc1eddb5d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96b6e35633335f549a155ebad5fbc991, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

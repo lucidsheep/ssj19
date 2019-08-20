@@ -43,8 +43,13 @@ public class PlayerCharacter : Creature
             lastMovementVector = controller.GetJoystickDirection();
     }
 
-    void UpdateInteractText()
+    public void UpdateInteractText(string customText = "")
     {
+        if(customText != "")
+        {
+            interactTxt.SetText(customText);
+            return;
+        }
         if (curInteractTarget == null) interactTxt.SetText("");
         else
         {
@@ -162,8 +167,41 @@ public class PlayerCharacter : Creature
         {
             if(traitList.Find(x => x.id == evolution.trait.id) == null)
             {
-                traitList.Add(evolution.trait);
+                ProcessTrait(evolution.trait);
             }
         }
+    }
+
+
+    void ProcessTrait(Trait trait)
+    {
+        traitList.Add(trait);
+        switch (trait.type)
+        {
+            case Trait.Type.IMMUNITY_FIRE:
+                GetComponent<Health>().AddResilience(Health.DamageType.FIRE, Health.DamageResilience.IMMUNE);
+                break;
+            case Trait.Type.IMMUNITY_ICE:
+                GetComponent<Health>().AddResilience(Health.DamageType.ICE, Health.DamageResilience.IMMUNE);
+                break;
+            case Trait.Type.ENHANCED_DASH:
+                dashSpeed *= 2f;
+                dashLength /= 2f;
+                break;
+            case Trait.Type.IMMUNITY_POISON:
+                GetComponent<Health>().AddResilience(Health.DamageType.POISON, Health.DamageResilience.IMMUNE);
+                break;
+            case Trait.Type.ENHANCED_VISION:
+                Camera.main.orthographicSize = 8f;
+                break;
+            case Trait.Type.ENHANCED_REGEN:
+                GetComponent<Health>().SetRecoveryRate(5f);
+                break;
+        }
+    }
+
+    public bool HasTrait(Trait.Type type)
+    {
+        return traitList.Exists(x => x.type == type);
     }
 }
