@@ -40,7 +40,7 @@ public class UIBarDisplay : MonoBehaviour {
             target.GetComponent<Stamina>().onSPChange.AddListener(OnChange);
             target.GetComponent<Stamina>().onSPMaxChange.AddListener(OnMaxChange);
         }
-        basePosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+        
     }
 
     public void OnChange(int delta)
@@ -48,12 +48,14 @@ public class UIBarDisplay : MonoBehaviour {
         storedValues.first += delta;
         if (!shouldDisplay) return;
         AnimateBar(Mathf.Abs(delta) <= 5);
-        if(shouldShake && delta < 0)
+        if(shouldShake && delta < -2)
             Shake(.25f);
     }
 
     void Shake(float time)
     {
+        if(shakeTime <= 0f)
+            basePosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
         shakeTime = time;
     }
     public void OnMaxChange(IntRange newRange)

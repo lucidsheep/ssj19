@@ -3,10 +3,10 @@
 [System.Serializable]
 public class Evolution
 {
-     IntRange hpRange = new IntRange(-10, 10);
-    IntRange spRange = new IntRange(-5, 5);
-     IntRange strRange = new IntRange(-3, 3);
-    IntRange agiRange = new IntRange(-3, 3);
+     IntRange hpRange = new IntRange(-2, 4);
+    IntRange spRange = new IntRange(-2, 4);
+     IntRange strRange = new IntRange(-1, 3);
+    IntRange agiRange = new IntRange(-1, 3);
 
     public Action action;
     public Trait trait;
@@ -16,10 +16,10 @@ public class Evolution
     public void GenerateEvolution(int minValue = 80, int maxValue = 100)
     {
         int generatedValue = 9999;
-        while(generatedValue > maxValue || generatedValue < minValue)
+        while(generatedValue > maxValue || generatedValue < minValue || (trait == null))
         {
-            hp = Random.Range(hpRange.first, hpRange.second + 1);
-            sp = Random.Range(spRange.first, spRange.second + 1);
+            hp = Random.Range(hpRange.first, hpRange.second + 1) * 5;
+            sp = Random.Range(spRange.first, spRange.second + 1) * 5;
             str = Random.Range(strRange.first, strRange.second + 1);
             agi = Random.Range(agiRange.first, agiRange.second + 1);
 

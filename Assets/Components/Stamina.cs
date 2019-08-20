@@ -37,6 +37,10 @@ public class Stamina : MonoBehaviour
 
         onSPMaxChange.Invoke(stamina);
     }
+    public void SetRecoveryRate(float newRate)
+    {
+        _recoveryRate = newRate;
+    }
 
     public bool ConsumeSP(int cost)
     {

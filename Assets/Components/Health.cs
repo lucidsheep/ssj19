@@ -110,9 +110,9 @@ public class Health : MonoBehaviour
         if (attack != null && attack.isAttacking && source.tag == "Dangerous")
             ReceiveDamage(attack.attackDamage, attack.attackType);
     }
-    public void ReceiveDamage(int damage, DamageType type)
+    public void ReceiveDamage(int damage, DamageType type, bool ignoreInvincibility = false)
     {
-        if (invincibleTime > 0f) return;
+        if (invincibleTime > 0f && !ignoreInvincibility) return;
 
         float multiplier = 1f;
 
@@ -135,7 +135,7 @@ public class Health : MonoBehaviour
         recoveryCooldown = _recoveryStartupTime;
         if (actualHitPoints <= 0f)
             onHPDepleted.Invoke();
-        else
+        else if(!ignoreInvincibility)
         {
             invincibleTime = defaultInvincibleTime;
             onInvincibilityChange.Invoke(true);

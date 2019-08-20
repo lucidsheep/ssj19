@@ -6,9 +6,12 @@ public class PlayerCharacter : Creature
 {
 	public float defaultDashTime;
 	public float defaultDashSpeed;
+    public float defaultSwimSpeed;
 
     public TextMeshPro interactTxt;
     public Attack attackTemplate;
+
+    public Evolution debug_forcedEvolution;
 
 	protected Stamina stamina;
 
@@ -21,6 +24,9 @@ public class PlayerCharacter : Creature
 	bool isDashing = false;
 	float dashLength;
 	float dashSpeed;
+    int swimTimeoutFrames = 0;
+    float swimDuration = 0f;
+    float swimTick = .1f;
     Attack attackAnim;
     Vector2 lastMovementVector;
 
@@ -34,13 +40,51 @@ public class PlayerCharacter : Creature
     private void Start()
     {
 		stamina = GetComponent<Stamina>();
+        Util.Maybe(debug_forcedEvolution, evo =>
+        {
+            AddEvolution(evo);
+        });
+        GameEngine.instance.onBiomeChanged.AddListener(OnBiomeChanged);
     }
 
+    void OnBiomeChanged(Biome newBiome)
+    {
+        if(newBiome.type == Biome.Type.FROZEN && !HasTrait(Trait.Type.IMMUNITY_ICE))
+        {
+            health.SetRecoveryRate(1f);
+            stamina.SetRecoveryRate(stamina.defaultRecoveryPerSecond / 2f);
+        } else
+        {
+            health.SetRecoveryRate(HasTrait(Trait.Type.ENHANCED_REGEN) ? 5f : health.defaultRecoveryPerSecond);
+            stamina.SetRecoveryRate(stamina.defaultRecoveryPerSecond);
+        }
+    }
     override protected void Update()
     {
         base.Update();
         if(controller.GetJoystickDirection() != Vector2.zero)
             lastMovementVector = controller.GetJoystickDirection();
+        if (swimTimeoutFrames > 0)
+        {
+            if(controller.GetJoystickDirection() != Vector2.zero)
+                swimTimeoutFrames--;
+            speedMultiplier = defaultSwimSpeed;
+            swimDuration += Time.deltaTime;
+            while(swimDuration > swimTick)
+            {
+                swimDuration -= swimTick;
+                if(!stamina.ConsumeSP(1))
+                {
+                    health.ReceiveDamage(1, Health.DamageType.NORMAL, true);
+                }
+            }
+        }
+        else if (swimTimeoutFrames == 0)
+        {
+            swimTimeoutFrames--;
+            speedMultiplier = defaultSpeedMultiplier;
+            swimDuration = 0f;
+        }
     }
 
     public void UpdateInteractText(string customText = "")
@@ -85,12 +129,14 @@ public class PlayerCharacter : Creature
     void StartAttack()
     {
         if (attackAnim != null) return;
+        if (!stamina.ConsumeSP(10)) return;
         attackAnim = Instantiate(attackTemplate, this.transform);
         attackAnim.transform.localPosition = Vector3.zero;
         Vector2 dir = lastMovementVector;
         dir.x *= -1f;
         attackAnim.transform.localRotation = Quaternion.Euler(0f, 0f, Util.Vector2ToAngle(dir) + 90f);
         attackAnim.attackDamage = strength;
+        attackAnim.transform.localScale = Vector3.one * (HasTrait(Trait.Type.ENHANCED_ATTACK) ? 2.7f : 1.8f);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -111,6 +157,17 @@ public class PlayerCharacter : Creature
         CheckInteractionExit(collider.gameObject);
     }
 
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if(HasTrait(Trait.Type.SWIMMING))
+        {
+            Util.Maybe(collider.gameObject.GetComponent<MapTile>(), tile =>
+            {
+                if (tile.tileType == MapTile.TileCategory.WATER)
+                    swimTimeoutFrames = 3;
+            });
+        }
+    }
     void CheckInteractionEnter(GameObject obj)
     {
         Interactable iTarget = obj.GetComponent<Interactable>();
@@ -192,7 +249,7 @@ public class PlayerCharacter : Creature
                 GetComponent<Health>().AddResilience(Health.DamageType.POISON, Health.DamageResilience.IMMUNE);
                 break;
             case Trait.Type.ENHANCED_VISION:
-                Camera.main.orthographicSize = 8f;
+                Camera.main.orthographicSize = 4f;
                 break;
             case Trait.Type.ENHANCED_REGEN:
                 GetComponent<Health>().SetRecoveryRate(5f);

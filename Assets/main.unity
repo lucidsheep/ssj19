@@ -176,9 +176,17 @@ MonoBehaviour:
   defaultSpeedMultiplier: 0.7
   defaultDashTime: 0.1
   defaultDashSpeed: 3
+  defaultSwimSpeed: 0.3
   interactTxt: {fileID: 2145295630}
   attackTemplate: {fileID: 114387285801933140, guid: 5612ceb417dc34d12b95cadf377225de,
     type: 2}
+  debug_forcedEvolution:
+    action: {fileID: 0}
+    trait: {fileID: 0}
+    hp: 0
+    sp: 0
+    str: 0
+    agi: 0
   evolutionList: []
   actionList: []
   traitList: []
@@ -260,6 +268,7 @@ GameObject:
   - component: {fileID: 183844363}
   - component: {fileID: 183844362}
   - component: {fileID: 183844366}
+  - component: {fileID: 183844367}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -305,7 +314,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 4:20
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42778b0787894cf4fa6b014b9438d1ce, type: 2}
   m_sharedMaterial: {fileID: 21138558542026734, guid: 42778b0787894cf4fa6b014b9438d1ce,
@@ -374,13 +383,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 183844362}
-    characterCount: 4
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 2
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -461,6 +470,21 @@ MonoBehaviour:
   text: {fileID: 183844362}
   icon: {fileID: 1275500320}
   type: 1
+--- !u!114 &183844367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 183844360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcd0ea0f6f8b465f8b0a4998d28ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horAnchor: 1
+  vertAnchor: 0
+  horOffset: 6
+  vertOffset: 2.8
 --- !u!1 &217937389
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +670,7 @@ GameObject:
   - component: {fileID: 278091189}
   - component: {fileID: 278091188}
   - component: {fileID: 278091190}
+  - component: {fileID: 278091191}
   m_Layer: 0
   m_Name: StamBar
   m_TagString: Untagged
@@ -698,6 +723,21 @@ MonoBehaviour:
   type: 1
   target: {fileID: 14754325}
   shouldShake: 0
+--- !u!114 &278091191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278091187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcd0ea0f6f8b465f8b0a4998d28ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horAnchor: 0
+  vertAnchor: 0
+  horOffset: 3.5
+  vertOffset: 1
 --- !u!1 &357230314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,6 +2185,7 @@ GameObject:
   - component: {fileID: 1332427542}
   - component: {fileID: 1332427541}
   - component: {fileID: 1332427543}
+  - component: {fileID: 1332427544}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -2197,6 +2238,21 @@ MonoBehaviour:
   type: 0
   target: {fileID: 14754325}
   shouldShake: 1
+--- !u!114 &1332427544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1332427540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcd0ea0f6f8b465f8b0a4998d28ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horAnchor: 0
+  vertAnchor: 0
+  horOffset: 3.5
+  vertOffset: 0.5
 --- !u!1 &1467983323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,6 +2625,7 @@ GameObject:
   - component: {fileID: 1798832950}
   - component: {fileID: 1798832949}
   - component: {fileID: 1798832953}
+  - component: {fileID: 1798832954}
   m_Layer: 0
   m_Name: Food
   m_TagString: Untagged
@@ -2614,7 +2671,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 12/34
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42778b0787894cf4fa6b014b9438d1ce, type: 2}
   m_sharedMaterial: {fileID: 21138558542026734, guid: 42778b0787894cf4fa6b014b9438d1ce,
@@ -2683,13 +2740,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1798832949}
-    characterCount: 5
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 2
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -2770,6 +2827,21 @@ MonoBehaviour:
   text: {fileID: 1798832949}
   icon: {fileID: 547979408}
   type: 0
+--- !u!114 &1798832954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798832947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcd0ea0f6f8b465f8b0a4998d28ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horAnchor: 1
+  vertAnchor: 0
+  horOffset: 6
+  vertOffset: 3.3
 --- !u!1 &2116111926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2939,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5b154f033915f2428d0776f2c5cbf5f, type: 2}
   - {fileID: 11400000, guid: a81e8f54b2228554284e77314cafc58b, type: 2}
   - {fileID: 11400000, guid: e0367925d1a450246803ab2b5fa0feeb, type: 2}
+  - {fileID: 11400000, guid: f5ae586674eb6cf4aa67d01fe6614b44, type: 2}
+  - {fileID: 11400000, guid: d2f0356f55550ee498ac49f364751e41, type: 2}
+  - {fileID: 11400000, guid: 51126cc34a34b124a99d7d4b1070d466, type: 2}
 --- !u!114 &2116111930
 MonoBehaviour:
   m_ObjectHideFlags: 0

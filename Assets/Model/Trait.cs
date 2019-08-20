@@ -15,7 +15,8 @@ public class Trait : Ability
         ENHANCED_MATING,
         INTERACT_TREE,
         INTERACT_FISH,
-        ENHANCED_VISION
+        ENHANCED_VISION,
+        ENHANCED_ATTACK
     }
 
     public Type type;

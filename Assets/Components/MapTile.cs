@@ -37,7 +37,8 @@ public class MapTile : MonoBehaviour {
         {
             Destroy(foodSpriteRenderer.gameObject);
         }
-        
+        if (tileType == TileCategory.WATER && GameEngine.instance.player.HasTrait(Trait.Type.SWIMMING))
+            GetComponent<Collider2D>().isTrigger = true;
         interactable.onInteraction.AddListener(OnInteraction);
 	}
 
@@ -56,12 +57,14 @@ public class MapTile : MonoBehaviour {
                     }
                     break;
                 case TileCategory.WATER:
-                    if (!GameEngine.instance.player.HasTrait(Trait.Type.INTERACT_TREE))
+                    if (!GameEngine.instance.player.HasTrait(Trait.Type.INTERACT_FISH))
                     {
                         failText = "The fish are too deep!";
                     }
                     break;
             }
+            if (failText == "" && !GameEngine.instance.player.GetComponent<Stamina>().ConsumeSP(5))
+                failText = "I'm too tired...";
             if(failText != "")
             {
                 GameEngine.instance.player.UpdateInteractText(failText);
