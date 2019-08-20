@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 14754327}
   - component: {fileID: 14754326}
   - component: {fileID: 14754332}
+  - component: {fileID: 14754333}
+  - component: {fileID: 14754334}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -234,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 14754325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25, y: 25, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1467983324}
   - {fileID: 2145295629}
@@ -255,6 +257,35 @@ MonoBehaviour:
   defaultStamina: 100
   defaultRecoveryPerSecond: 20
   defaultTimeToStartRecovery: 2
+--- !u!95 &14754333
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 14754325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f63fcd15589b623408b0e339aa97ee32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &14754334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 14754325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04457c1a317c62d4081116d0e888a5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 14754327}
 --- !u!1 &183844360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,7 +2075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167505217
 Transform:
   m_ObjectHideFlags: 0
@@ -2317,7 +2348,7 @@ SpriteRenderer:
   m_SortingLayerID: -640183273
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9232e60724fa74b40ba9e400eb08a866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ceaf72f8f63472f4b84d575fd409eb1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
