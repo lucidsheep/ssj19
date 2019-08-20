@@ -13,3 +13,4 @@ public class SPUpdateEvent : UnityEvent<IntRange> { }
 public class InteractionEvent : UnityEvent<Creature> { }
 public class HPDepletedEvent : UnityEvent { }
 public class InvincibilityChangeEvent : UnityEvent<bool> { }
+public class BiomeChangeEvent : UnityEvent<Biome> { }

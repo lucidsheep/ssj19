@@ -29,6 +29,7 @@ public class GameEngine : MonoBehaviour
     public EvolutionEvent onEvolutionLost = new EvolutionEvent();
     public MatingPhaseStart onMatingPhase = new MatingPhaseStart();
     public GatheringPhaseStart onGatheringPhase = new GatheringPhaseStart();
+    public BiomeChangeEvent onBiomeChanged = new BiomeChangeEvent();
 
     float timeLeft;
     int foodGathered;
@@ -88,6 +89,7 @@ public class GameEngine : MonoBehaviour
         currentBiome = biomeList.GetRandomItem();
         //todo - prophecy
         MapManager.instance.ProcessBiome(currentBiome);
+        onBiomeChanged.Invoke(currentBiome);
     }
 
     void EndGathering()

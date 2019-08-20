@@ -60,6 +60,12 @@ TagManager:
   - name: Character_Upper
     uniqueID: 1787413123
     locked: 0
+  - name: Effects
+    uniqueID: 237951443
+    locked: 0
+  - name: Effects_Upper
+    uniqueID: 3746519213
+    locked: 0
   - name: UI
     uniqueID: 2554333695
     locked: 0
