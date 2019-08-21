@@ -158,7 +158,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 6
 --- !u!95 &95049741851262500
 Animator:
   serializedVersion: 3
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtBox: {fileID: 58127965168691434}
   attackTime: 0.1
-  attackDamage: 15
+  attackDamage: 25
   attackType: 4
   autoAttack: 0
   destroyOnAttackFinish: 0
@@ -235,10 +235,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultStrength: 5
-  defaultAgility: 3
+  defaultAgility: 4
   defaultSpeedMultiplier: 0.7
-  attackSpeedMultiplier: 2
+  attackSpeedMultiplier: 3
   attackTime: 0.5
+  attackCharge: 0.5
+  attackRange: 3
   foodOnDeath: {fileID: 1860976354385046, guid: c7c00813906eb3648a568c31e7b917cb,
     type: 2}
   foodDroppedRange:

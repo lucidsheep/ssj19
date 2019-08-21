@@ -6,17 +6,24 @@ public class EnemyCreature : Creature
 {
     public float attackSpeedMultiplier;
     public float attackTime;
+    public float attackCharge = .5f;
+    public float attackRange = 2f;
     public GameObject foodOnDeath;
     public IntRange foodDroppedRange;
 
     LSTimer pounceTimer;
+    bool isAttacking = false;
+    bool isRunning = false;
     override protected void OnButtonDown(Controller.Command command)
 	{
         if(command == Controller.Command.ATTACK)
         {
+            if (isAttacking) return;
+            isAttacking = true;
             speedMultiplier = 0f;
-            float stareTime = Random.Range(.2f, .4f);
-            GetComponentInChildren<SpriteRenderer>().DOColor(Color.red, stareTime);
+            float stareTime = attackCharge;
+            GetComponentInChildren<SpriteRenderer>().DOColor(Color.blue, stareTime);
+            GetComponent<Animator>().enabled = false;
             pounceTimer = TimeControl.StartTimer(stareTime, () => {
                 speedMultiplier = attackSpeedMultiplier;
                 GetComponent<Attack>().isAttacking = true;
@@ -24,6 +31,8 @@ public class EnemyCreature : Creature
                 {
                     speedMultiplier = defaultSpeedMultiplier;
                     GetComponent<Attack>().isAttacking = false;
+                    isAttacking = false;
+                    GetComponent<Animator>().enabled = true;
                     GetComponentInChildren<SpriteRenderer>().color = Color.white;
                 });
                 
@@ -49,5 +58,27 @@ public class EnemyCreature : Creature
             foodToDrop--;
         }
         Destroy(this.gameObject);
+    }
+
+    public void StartRunning()
+    {
+        isRunning = true;
+        speedMultiplier = attackSpeedMultiplier;
+    }
+
+    public void EndRunning()
+    {
+        isRunning = false;
+        speedMultiplier = defaultSpeedMultiplier;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(isRunning)
+        {
+            if (Random.value > .75 && !GetComponent<Stamina>().ConsumeSP(1))
+                EndRunning();
+        }
     }
 }

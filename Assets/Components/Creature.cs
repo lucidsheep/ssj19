@@ -35,7 +35,7 @@ public class Creature : MonoBehaviour
     protected virtual void Update()
     {
         if (!GameEngine.instance.inGatheringPhase) return;
-        Vector2 direction = controller.GetJoystickDirection();
+        Vector2 direction = controller.GetJoystickDirection().normalized;
 
         body.MovePosition(body.position + (direction * Time.deltaTime * agility * speedMultiplier));
     }

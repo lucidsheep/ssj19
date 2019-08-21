@@ -130,6 +130,9 @@ public class Health : MonoBehaviour
             default: break;
         }
         int totalDamage = Mathf.CeilToInt(damage * multiplier) * -1;
+
+        if (totalDamage >= 0) return;
+
         actualHitPoints += totalDamage;
         onHPChange.Invoke(totalDamage);
         recoveryCooldown = _recoveryStartupTime;

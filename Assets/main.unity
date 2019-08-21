@@ -2928,6 +2928,8 @@ MonoBehaviour:
     weight: 400
   - item: {fileID: 114299215853301332, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
     weight: 2
+  - item: {fileID: 114757148990262512, guid: 53461d7071dc8a9479ba39db7084859e, type: 2}
+    weight: 3
   apexPredator: {fileID: 114106653816362364, guid: c5b2caa5ca41bbe4b992edfb9e55e201,
     type: 2}
   onMapGenerated:

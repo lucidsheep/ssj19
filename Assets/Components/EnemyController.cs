@@ -29,38 +29,67 @@ public class EnemyController : Controller
         timeToBehaviorCheck -= Time.deltaTime;
         if(timeToBehaviorCheck <= 0f)
         {
-            timeToBehaviorCheck = Random.Range(2f, 4f);
+            timeToBehaviorCheck = Random.Range(1f, 2f);
             switch(curBehavior)
             {
                 case BehaviorMode.PATROL:
-                    if(fieldOfVision.IsTouching(GameEngine.instance.player.GetComponent<Collider2D>()))
-                    {
-                        curTarget = GameEngine.instance.player.transform.position;
-                        curBehavior = BehaviorMode.CHASE;
-                    }
-                    else if(Vector3.Distance(transform.position, homeSpot) > 10f)
+                    if (Vector3.Distance(transform.position, homeSpot) > 10f)
                         curTarget = homeSpot;
+                    else if (fieldOfVision.IsTouching(GameEngine.instance.player.GetComponent<Collider2D>()))
+                    {
+                        if (type == Type.PREY)
+                        {
+                            curTarget = GameEngine.instance.player.transform.position - transform.position;
+                            curTarget *= -10f;
+                            curTarget = transform.position + curTarget;
+                            GetComponent<EnemyCreature>().StartRunning();
+                            curBehavior = BehaviorMode.RUN;
+                        }
+                        else
+                        {
+                            curTarget = GameEngine.instance.player.transform.position;
+                            curBehavior = BehaviorMode.CHASE;
+                        }
+                    }
+                    
                     else
                         curTarget = transform.position + new Vector3(Random.Range(-6f, 6f), Random.Range(-6f, 6f), 0f);
                 break;
+                case BehaviorMode.RUN:
+                    {
+                        if (!fieldOfVision.IsTouching(GameEngine.instance.player.GetComponent<Collider2D>()))
+                        {
+                            curBehavior = BehaviorMode.PATROL;
+                            GetComponent<EnemyCreature>().EndRunning();
+                        }
+                        else
+                        {
+                            curTarget = GameEngine.instance.player.transform.position - transform.position;
+                            curTarget *= -10f;
+                            curTarget = transform.position + curTarget;
+                        }
+                        break;
+                    }
                 case BehaviorMode.CHASE:
                     if(Vector3.Distance(transform.position, curTarget) > 10f)
                      {
                         curTarget = homeSpot;
                         curBehavior = BehaviorMode.PATROL;
-                     } else if(Vector3.Distance(transform.position, curTarget) < 2f)
+                     } else if(Vector3.Distance(transform.position, curTarget) < GetComponent<EnemyCreature>().attackRange)
                     { 
                         curBehavior = BehaviorMode.ATTACK;
-                        curTarget = GameEngine.instance.player.transform.position;
+                        curTarget = GameEngine.instance.player.transform.position - transform.position;
+                        curTarget *= 100f;
+                        curTarget = transform.position + curTarget;
                         onButtonDown.Invoke(Command.ATTACK);
-                        //timeToBehaviorCheck = .75f;
+                        timeToBehaviorCheck = GetComponent<EnemyCreature>().attackCharge + GetComponent<EnemyCreature>().attackTime + .2f;
                     }
                     break;
                 case BehaviorMode.ATTACK:
                     curBehavior = BehaviorMode.CHASE;
                     break;
             }
-        } else if(curBehavior == BehaviorMode.CHASE || curBehavior == BehaviorMode.ATTACK)
+        } else if(curBehavior == BehaviorMode.CHASE)
             {
                 curTarget = GameEngine.instance.player.transform.position;
             }
