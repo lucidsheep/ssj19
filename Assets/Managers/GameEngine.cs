@@ -14,7 +14,7 @@ public class GameEngine : MonoBehaviour
 
     public float startingTime;
     public float timeIncrement;
-
+    public int mapSize = 50;
     public int foodRequirement;
     public int foodRequirementIncrement;
 
@@ -33,10 +33,12 @@ public class GameEngine : MonoBehaviour
 
     float timeLeft;
     int foodGathered;
+    int numGenerations = 1;
     bool gameOver = false;
 
     LSWeightedList<Biome> biomeList = new LSWeightedList<Biome>();
     public bool inGatheringPhase = false;
+    public bool inProphecyPhase = true;
 
     private void Awake()
     {
@@ -46,33 +48,62 @@ public class GameEngine : MonoBehaviour
 
     private void Start()
     {
+        SetBiomeBias();
         PickBiome();
-        TimeControl.StartTimer(.1f, () =>
-            StartMating());
+        CenterPlayer();
         player.GetComponent<Health>().onHPDepleted.AddListener(EndGathering);
+        MapManager.instance.onMapGenerated.AddListener(OnMapGenerated);
+    }
+
+    void SetBiomeBias()
+    {
+        Biome commonBiome;
+        Biome unCommonBiome;
+        do
+        {
+            commonBiome = biomeList.GetRandomItem();
+            unCommonBiome = biomeList.GetRandomItem();
+        } while (commonBiome.biomeName == unCommonBiome.biomeName || commonBiome.biomeName == "Grasslands"); //grasslands should never be the common biome
+
+        biomeList.Find(x => x.item.biomeName == commonBiome.biomeName).weight = 30;
+        biomeList.Find(x => x.item.biomeName == unCommonBiome.biomeName).weight = 5;
     }
     void StartGathering()
     {
-        if (foodGathered > 0) titleText.SetText("A Natural Selection...");
-        foodGathered = 0;
-        timeLeft = startingTime;
-        onTimeTick.Invoke(timeLeft);
-        onFoodGathered.Invoke(foodGathered, foodRequirement);
-        player.GetComponent<Health>().RestoreHealth(999);
-        MapManager.instance.GenerateMap(50, 10);
-        fadeToBlack.DOColor(new Color(0f, 0f, 0f, 0f), 1f).SetDelay(1f).SetEase(Ease.Linear).OnComplete(() =>
+        titleText.SetText("A Natural Selection...\n\n\nLoading World");
+        TimeControl.StartTimer(.1f, () =>
+        {
+            foodGathered = 0;
+            timeLeft = startingTime;
+            onTimeTick.Invoke(timeLeft);
+            onFoodGathered.Invoke(foodGathered, foodRequirement);
+            player.GetComponent<Health>().RestoreHealth(999);
+            MapManager.instance.GenerateMap(mapSize, 10);
+        });
+    }
+
+    void OnMapGenerated()
+    {
+        fadeToBlack.DOColor(new Color(0f, 0f, 0f, 0f), 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             inGatheringPhase = true;
             onGatheringPhase.Invoke();
             titleText.SetText("");
         });
-        
     }
-
     private void Update()
     {
-        if (gameOver && ReInput.players.GetPlayer(0).GetButtonDown("Start"))
-            SceneManager.LoadScene(0);
+        if(ReInput.players.GetPlayer(0).GetButtonDown("Start"))
+        {
+            if (gameOver)
+                SceneManager.LoadScene(0);
+            else if (inProphecyPhase)
+            {
+                inProphecyPhase = false;
+                StartMating();
+            }
+        }
+        
         if (!inGatheringPhase) return;
         int timeBefore = Mathf.CeilToInt(timeLeft);
         timeLeft -= Time.deltaTime;
@@ -87,7 +118,7 @@ public class GameEngine : MonoBehaviour
     void PickBiome()
     {
         currentBiome = biomeList.GetRandomItem();
-        //todo - prophecy
+        titleText.SetText("Generation " + numGenerations + "\n\nThe elders predict " + currentBiome.biomeProphecy + "\n\nPress START to begin natural selection...");
         MapManager.instance.ProcessBiome(currentBiome);
         onBiomeChanged.Invoke(currentBiome);
     }
@@ -95,21 +126,28 @@ public class GameEngine : MonoBehaviour
     void EndGathering()
     {
         inGatheringPhase = false;
-        PickBiome();
+        
         fadeToBlack.DOColor(new Color(0f, 0f, 0f, 1f), 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (foodGathered >= foodRequirement && player.GetComponent<Health>().hitPoints.first > 0)
             {
-                StartMating();
+                inProphecyPhase = true;
+                PickBiome();
             }
             else
             {
                 titleText.SetText("The Journey Ends...");
                 gameOver = true;
             }
-            player.transform.position = new Vector3(25f, 25f, 0f);
+            CenterPlayer();
         });
         
+    }
+
+    void CenterPlayer()
+    {
+        player.transform.position = new Vector3(mapSize / 2f, mapSize / 2f, 0f);
+        Camera.main.transform.position = new Vector3(mapSize / 2f, mapSize / 2f, -10f);
     }
 
     void StartMating()

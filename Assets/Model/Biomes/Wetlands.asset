@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   biomeName: Wetlands
-  biomeProphecy: I predict a flood - the rivers will overflow and plants will grow!
+  biomeProphecy: a great flood. The rivers will overflow and plants will grow!
   tileAdjustments:
   - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
     weight: -99

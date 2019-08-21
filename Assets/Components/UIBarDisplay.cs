@@ -61,7 +61,8 @@ public class UIBarDisplay : MonoBehaviour {
     public void OnMaxChange(IntRange newRange)
     {
         storedValues = newRange;
-        AnimateBar(true);
+        if(shouldDisplay)
+            AnimateBar(true);
     }
 
     void AnimateBar(bool instant = false)

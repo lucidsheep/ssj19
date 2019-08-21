@@ -235,7 +235,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 14754325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 25, z: 0}
+  m_LocalPosition: {x: 50, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1467983324}
@@ -592,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 217937389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 25, z: -10}
+  m_LocalPosition: {x: 50, y: 50, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1332427542}
@@ -2075,7 +2075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1167505217
 Transform:
   m_ObjectHideFlags: 0
@@ -2308,7 +2308,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467983323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 14754331}
@@ -2407,7 +2407,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.23}
-  m_SizeDelta: {x: 20, y: 5}
+  m_SizeDelta: {x: 10, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714382163
 MonoBehaviour:
@@ -2928,6 +2928,13 @@ MonoBehaviour:
     weight: 400
   - item: {fileID: 114299215853301332, guid: ff545bc3afe8645169a5fc720e8155e5, type: 2}
     weight: 2
+  apexPredator: {fileID: 114106653816362364, guid: c5b2caa5ca41bbe4b992edfb9e55e201,
+    type: 2}
+  onMapGenerated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   tileSize:
     first: 1
     second: 1
@@ -2991,6 +2998,7 @@ MonoBehaviour:
   titleText: {fileID: 1714382163}
   startingTime: 120
   timeIncrement: 0
+  mapSize: 80
   foodRequirement: 20
   foodRequirementIncrement: 5
   currentBiome: {fileID: 11400000, guid: 6c4235b1959736345859c3d1f66ef60f, type: 2}
@@ -3006,6 +3014,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 9debea8e5d3a9254181d6743a7664d0c, type: 2}
     weight: 10
   inGatheringPhase: 0
+  inProphecyPhase: 1
 --- !u!114 &2116111931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,8 +3128,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 4
+  m_fontSizeBase: 4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MapManager : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class MapManager : MonoBehaviour {
 	public MapTile groundTile;
 	public WeightedMapTile[] obstacleOptions;
     public WeightedEnemy[] enemyOptions;
+    public EnemyCreature apexPredator;
+
+    public UnityEvent onMapGenerated = new UnityEvent();
 
 	public IntRange tileSize;
 
@@ -82,6 +86,13 @@ public class MapManager : MonoBehaviour {
                 }
             }
         });
+        Vector3 apexLocation = midPoint;
+        apexLocation.x *= UnityEngine.Random.value > .5f ? 1.5f : .5f;
+        apexLocation.y *= UnityEngine.Random.value > .5f ? 1.5f : .5f;
+
+        enemyObjects.Add(Instantiate(apexPredator, apexLocation, Quaternion.identity));
+
+        onMapGenerated.Invoke();
 	}
 
     internal void ProcessBiome(Biome currentBiome)

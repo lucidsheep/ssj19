@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   biomeName: Grasslands
-  biomeProphecy: I predict a calm year ahead
+  biomeProphecy: a calm year ahead
   tileAdjustments:
   - item: {fileID: 114097744784521908, guid: c3ae9353d2988436b9da72610b37b0f6, type: 2}
     weight: 0

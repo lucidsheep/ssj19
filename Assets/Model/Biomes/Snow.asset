@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   biomeName: Ice Age
-  biomeProphecy: I predict a long winter ahead
+  biomeProphecy: a long winter ahead. It will be difficult to stay healthy and warm.
   tileAdjustments:
   - item: {fileID: 114908770398233576, guid: a1b15235b407b4a948ef39215d8beb0b, type: 2}
     weight: 1

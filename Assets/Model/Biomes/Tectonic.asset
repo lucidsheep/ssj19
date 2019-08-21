@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   biomeName: Tectonic Shift
-  biomeProphecy: I predict a great earthquake, and magma!
+  biomeProphecy: a great earthquake! Magma and cracks will split the earth apart.
   tileAdjustments:
   - item: {fileID: 114908770398233576, guid: 26de0e00f52cc4757bb6ebf912b1264e, type: 2}
     weight: 2

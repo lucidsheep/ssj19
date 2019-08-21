@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   biomeName: Drought
-  biomeProphecy: I predict a terrible drought!
+  biomeProphecy: a terrible drought! Food and vegetation will be scarce.
   tileAdjustments:
   - item: {fileID: 114908770398233576, guid: a1b15235b407b4a948ef39215d8beb0b, type: 2}
     weight: -1
