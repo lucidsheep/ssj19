@@ -10,7 +10,7 @@ public class PlayerCharacter : Creature
 
     public TextMeshPro interactTxt;
     public Attack attackTemplate;
-
+    public Anim dashAnimTemplate;
     public Evolution debug_forcedEvolution;
 
 	protected Stamina stamina;
@@ -109,7 +109,7 @@ public class PlayerCharacter : Creature
                 if (!isDashing) StartDash();
                 break;
             case Controller.Command.ATTACK:
-                if(curInteractTarget != null && curInteractTarget.canInteract)
+                if(curInteractTarget != null && curInteractTarget.canInteract && !MapManager.instance.CheckForThreats(transform.position))
                 {
                     curInteractTarget.StartInteraction(this);
                     if(!curInteractTarget.canInteract)
@@ -171,7 +171,7 @@ public class PlayerCharacter : Creature
     void CheckInteractionEnter(GameObject obj)
     {
         Interactable iTarget = obj.GetComponent<Interactable>();
-        if (curInteractTarget == null && iTarget != null && iTarget.canInteract)
+        if (iTarget != null && iTarget.canInteract)
         {
             curInteractTarget = iTarget;
             UpdateInteractText();
@@ -193,6 +193,7 @@ public class PlayerCharacter : Creature
 
 		speedMultiplier = dashSpeed;
 		isDashing = true;
+        Instantiate(dashAnimTemplate, transform.position, Quaternion.identity);
 		TimeControl.StartTimer(dashLength, () =>
 		{
 			speedMultiplier = defaultSpeedMultiplier;

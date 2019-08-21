@@ -47,6 +47,10 @@ public class MapManager : MonoBehaviour {
 		
 	}
 
+    public bool CheckForThreats(Vector3 center)
+    {
+        return enemyObjects.Find(x => x != null && x.gameObject != null && Vector3.Distance(x.transform.position, center) < 2f);
+    }
 	public void GenerateMap(int size, int difficulty)
 	{
         ClearMap();
