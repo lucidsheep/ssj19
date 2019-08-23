@@ -115,6 +115,11 @@ public class GameEngine : MonoBehaviour
                 inProphecyPhase = false;
                 StartMating();
             }
+            else if(!PauseScreen.instance.isVisible)
+            {
+                TimeControl.stopTime(999999f);
+                PauseScreen.instance.ShowScreen();
+            }
         }
         
         if (!inGatheringPhase) return;

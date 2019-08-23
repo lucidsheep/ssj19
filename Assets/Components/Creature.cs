@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Creature : MonoBehaviour
 {
-    protected int strength;
-    protected int agility;
+    public int strength;
+    public int agility;
 
     public int defaultStrength;
     public int defaultAgility;

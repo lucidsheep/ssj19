@@ -54,7 +54,7 @@ public class EvolutionMenu : MonoBehaviour
         {
             Move(false);
         }
-        else if(controller.GetButtonDown("Start"))
+        else if(controller.GetButtonDown("Attack"))
         {
             GameEngine.instance.AddEvolution(menuItems[curSelection].evolution);
             Destroy(this.gameObject);
