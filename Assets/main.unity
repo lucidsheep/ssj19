@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultStamina: 100
-  defaultRecoveryPerSecond: 20
+  defaultRecoveryPerSecond: 30
   defaultTimeToStartRecovery: 2
 --- !u!95 &14754333
 Animator:

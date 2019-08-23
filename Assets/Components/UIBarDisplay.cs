@@ -55,8 +55,11 @@ public class UIBarDisplay : MonoBehaviour {
 
     void Shake(float time)
     {
-        if(shakeTime <= 0f)
+        if (shakeTime <= 0f)
+        {
             basePosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+            Util.Maybe(GetComponent<EdgeAnchor>(), anchor => anchor.enabled = false);
+        }
         shakeTime = time;
     }
     public void OnMaxChange(IntRange newRange)
@@ -95,7 +98,10 @@ public class UIBarDisplay : MonoBehaviour {
         {
             shakeTime -= Time.deltaTime;
             if (shakeTime <= 0f)
+            {
                 transform.localPosition = basePosition;
+                Util.Maybe(GetComponent<EdgeAnchor>(), anchor => anchor.enabled = true);
+            }
             else
                 transform.localPosition = new Vector3(basePosition.x + Random.Range(-shakeAmount, shakeAmount), basePosition.y + Random.Range(-shakeAmount, shakeAmount), basePosition.z);
         }
