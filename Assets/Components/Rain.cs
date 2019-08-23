@@ -6,9 +6,12 @@ public class Rain : MonoBehaviour {
 
     public SpriteRenderer rainTemplate;
     List<SpriteRenderer> allRain;
+    AudioSource audio;
+    Biome lastBiome;
 	// Use this for initialization
 	void Start () {
         allRain = new List<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
         Util.DoubleLoop(20, 20, (x, y) =>
         {
             var thisRain = Instantiate(rainTemplate, transform);
@@ -16,12 +19,26 @@ public class Rain : MonoBehaviour {
             allRain.Add(thisRain);
         });
         GameEngine.instance.onBiomeChanged.AddListener(OnBiomeChanged);
+        GameEngine.instance.onGatheringPhase.AddListener(OnGatheringStart);
 	}
+
+    void OnGatheringStart()
+    {
+        Util.Maybe(lastBiome, biome =>
+        {
+            if (biome.type == Biome.Type.WETLANDS)
+                audio.Play();
+            else
+                audio.Stop();
+        });
+    }
 	
     void OnBiomeChanged(Biome biome)
     {
+        lastBiome = biome;
         foreach (var rain in allRain)
             rain.enabled = biome.type == Biome.Type.WETLANDS;
+        audio.Stop();
     }
 
 }

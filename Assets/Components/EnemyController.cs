@@ -6,6 +6,8 @@ public class EnemyController : Controller
     public Collider2D fieldOfVision;
     public enum Type { PREDATOR, PREY, SCAVENGER };
     public Type type;
+    public AudioClip awareSFX;
+    public AudioClip footstepSFX;
 
     public enum BehaviorMode { PATROL, CHASE, RUN, ATTACK }
     BehaviorMode curBehavior = BehaviorMode.PATROL;
@@ -15,9 +17,13 @@ public class EnemyController : Controller
     Vector3 curTarget;
     Vector3 homeSpot;
 
+    AudioSource audio;
+    float timeToFootstep = 0f;
+
     private void Start()
     {
         homeSpot = transform.position;
+        audio = GetComponent<AudioSource>();
     }
     public override Vector2 GetJoystickDirection()
     {
@@ -44,11 +50,15 @@ public class EnemyController : Controller
                             curTarget = transform.position + curTarget;
                             GetComponent<EnemyCreature>().StartRunning();
                             curBehavior = BehaviorMode.RUN;
+                            audio.clip = awareSFX;
+                            audio.Play();
                         }
                         else
                         {
                             curTarget = GameEngine.instance.player.transform.position;
                             curBehavior = BehaviorMode.CHASE;
+                            audio.clip = awareSFX;
+                            audio.Play();
                         }
                     }
                     
@@ -82,6 +92,7 @@ public class EnemyController : Controller
                         curTarget *= 100f;
                         curTarget = transform.position + curTarget;
                         onButtonDown.Invoke(Command.ATTACK);
+                        
                         timeToBehaviorCheck = GetComponent<EnemyCreature>().attackCharge + GetComponent<EnemyCreature>().attackTime + .2f;
                     }
                     break;
@@ -93,8 +104,16 @@ public class EnemyController : Controller
             {
                 curTarget = GameEngine.instance.player.transform.position;
             }
-
-        
-
+        timeToFootstep -= Time.deltaTime;
+        if(timeToFootstep <= 0f)
+        {
+            if(!audio.isPlaying && footstepSFX != null)
+            {
+                audio.clip = footstepSFX;
+                audio.Play();
+            }
+            timeToFootstep = .25f;
+        }
     }
+   
 }

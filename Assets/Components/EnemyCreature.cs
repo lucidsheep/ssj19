@@ -10,10 +10,17 @@ public class EnemyCreature : Creature
     public float attackRange = 2f;
     public GameObject foodOnDeath;
     public IntRange foodDroppedRange;
+    public AudioClip attackSFX;
 
     LSTimer pounceTimer;
     bool isAttacking = false;
     bool isRunning = false;
+    AudioSource audio;
+
+    protected void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
     override protected void OnButtonDown(Controller.Command command)
 	{
         if(command == Controller.Command.ATTACK)
@@ -27,6 +34,8 @@ public class EnemyCreature : Creature
             pounceTimer = TimeControl.StartTimer(stareTime, () => {
                 speedMultiplier = attackSpeedMultiplier;
                 GetComponent<Attack>().isAttacking = true;
+                audio.clip = attackSFX;
+                audio.Play();
                 pounceTimer = TimeControl.StartTimer(attackTime, () =>
                 {
                     speedMultiplier = defaultSpeedMultiplier;

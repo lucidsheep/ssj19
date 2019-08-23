@@ -13,13 +13,19 @@ public class PlayerCharacter : Creature
     public Anim dashAnimTemplate;
     public Evolution debug_forcedEvolution;
 
-	protected Stamina stamina;
+    public AudioClip eatSFX;
+   [System.Serializable]
+   public class AudioClipBiome : LSTuple<AudioClip, Biome.Type> { }
+    public AudioClipBiome[] footstepOptions;
+
+    protected Stamina stamina;
 
     public List<Evolution> evolutionList = new List<Evolution>();
     public List<Action> actionList = new List<Action>();
     public List<Trait> traitList = new List<Trait>();
 
     Interactable curInteractTarget = null;
+    AudioClip curFootstep;
 
 	bool isDashing = false;
 	float dashLength;
@@ -27,14 +33,17 @@ public class PlayerCharacter : Creature
     int swimTimeoutFrames = 0;
     float swimDuration = 0f;
     float swimTick = .1f;
+    float timeToNextFootstep = 0f;
     Attack attackAnim;
     Vector2 lastMovementVector;
+    AudioSource audio;
 
     protected override void Awake()
     {
         base.Awake();
 		dashLength = defaultDashTime;
 		dashSpeed = defaultDashSpeed;
+        audio = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -58,12 +67,33 @@ public class PlayerCharacter : Creature
             health.SetRecoveryRate(HasTrait(Trait.Type.ENHANCED_REGEN) ? 5f : health.defaultRecoveryPerSecond);
             stamina.SetRecoveryRate(stamina.defaultRecoveryPerSecond);
         }
+        curFootstep = footstepOptions[0].first;
+        foreach(var footstep in footstepOptions)
+        {
+            if(footstep.second == newBiome.type)
+            {
+                curFootstep = footstep.first;
+                break;
+            }
+        }
+        audio.clip = curFootstep;
+        
     }
     override protected void Update()
     {
         base.Update();
-        if(controller.GetJoystickDirection() != Vector2.zero)
+        if (controller.GetJoystickDirection() != Vector2.zero)
+        {
             lastMovementVector = controller.GetJoystickDirection();
+            timeToNextFootstep -= Time.deltaTime;
+            if (timeToNextFootstep <= 0f)
+            {
+                audio.Play();
+                timeToNextFootstep = .25f;
+            }
+        }
+        else
+            timeToNextFootstep = 0f;
         if (swimTimeoutFrames > 0)
         {
             if(controller.GetJoystickDirection() != Vector2.zero)

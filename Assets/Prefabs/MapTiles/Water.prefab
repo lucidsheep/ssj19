@@ -152,6 +152,7 @@ MonoBehaviour:
   interactText: Fish
   canInteract: 0
   disableAfterInteraction: 0
+  interactSFX: {fileID: 0}
 --- !u!114 &114908770398233576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,7 +212,7 @@ SpriteRenderer:
   m_SortingLayerID: 48250605
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300120, guid: 893cd4428ba0140de8507b6db6ad3927, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37d9b764a71318e47b51280637a11171, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -63,8 +63,8 @@ public class MapTile : MonoBehaviour {
                     }
                     break;
             }
-            if (failText == "" && !GameEngine.instance.player.GetComponent<Stamina>().ConsumeSP(5))
-                failText = "I'm too tired...";
+            //if (failText == "" && !GameEngine.instance.player.GetComponent<Stamina>().ConsumeSP(5))
+            //    failText = "I'm too tired...";
             if(failText != "")
             {
                 GameEngine.instance.player.UpdateInteractText(failText);

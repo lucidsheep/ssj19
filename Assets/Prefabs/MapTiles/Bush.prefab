@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 50396583028381710}
   - component: {fileID: 58292788388711520}
   - component: {fileID: 114507115341720062}
+  - component: {fileID: 82577887499643652}
   m_Layer: 8
   m_Name: Bush
   m_TagString: Untagged
@@ -140,6 +141,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!82 &82577887499643652
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860976354385046}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114507115341720062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,6 +235,7 @@ MonoBehaviour:
   interactText: Shake
   canInteract: 0
   disableAfterInteraction: 0
+  interactSFX: {fileID: 8300000, guid: ee93fc57b56b74d47941b9f633ad9ae4, type: 3}
 --- !u!114 &114517796026169814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +251,7 @@ MonoBehaviour:
   adjacencyBonus: 5
   isObstacle: 1
   containsFoodProbability: 0.5
-  containedFood: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb,
+  containedFood: {fileID: 114444532853800568, guid: 23c535ff4dd24e6438a40e2459a6511d,
     type: 2}
   sprite: {fileID: 212955254751548038}
   foodSpriteRenderer: {fileID: 212889252573132488}

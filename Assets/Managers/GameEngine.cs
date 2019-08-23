@@ -12,6 +12,14 @@ public class GameEngine : MonoBehaviour
     public SpriteRenderer fadeToBlack;
     public TextMeshPro titleText;
 
+    public AudioClip titleMusic;
+    public AudioClip[] overworldMusic;
+    public AudioClip matingMusic;
+    public AudioClip gameOverMusic;
+    public AudioClip eatSFX;
+
+    int overworldMusicIndex = 0;
+
     public float startingTime;
     public float timeIncrement;
     public int mapSize = 50;
@@ -53,6 +61,7 @@ public class GameEngine : MonoBehaviour
         CenterPlayer();
         player.GetComponent<Health>().onHPDepleted.AddListener(EndGathering);
         MapManager.instance.onMapGenerated.AddListener(OnMapGenerated);
+        SoundController.PlaySong(titleMusic);
     }
 
     void SetBiomeBias()
@@ -71,6 +80,7 @@ public class GameEngine : MonoBehaviour
     void StartGathering()
     {
         titleText.SetText("A Natural Selection...\n\n\nLoading World");
+        
         TimeControl.StartTimer(.1f, () =>
         {
             foodGathered = 0;
@@ -84,11 +94,14 @@ public class GameEngine : MonoBehaviour
 
     void OnMapGenerated()
     {
+        SoundController.FadeOut(.75f);
         fadeToBlack.DOColor(new Color(0f, 0f, 0f, 0f), 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             inGatheringPhase = true;
             onGatheringPhase.Invoke();
             titleText.SetText("");
+            SoundController.PlaySong(overworldMusic[overworldMusicIndex], true, .75f);
+            overworldMusicIndex = overworldMusicIndex + 1 >= overworldMusic.Length ? 0 : overworldMusicIndex + 1;
         });
     }
     private void Update()
@@ -126,17 +139,21 @@ public class GameEngine : MonoBehaviour
     void EndGathering()
     {
         inGatheringPhase = false;
+        SoundController.FadeOut(.75f);
         
         fadeToBlack.DOColor(new Color(0f, 0f, 0f, 1f), 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             if (foodGathered >= foodRequirement && player.GetComponent<Health>().hitPoints.first > 0)
             {
                 inProphecyPhase = true;
+                numGenerations++;
                 PickBiome();
+                SoundController.PlaySong(matingMusic, true, .75f);
             }
             else
             {
-                titleText.SetText("The Journey Ends...");
+                titleText.SetText("The Journey Ends...\n\nYour species lasted " + numGenerations + " generations.");
+                SoundController.PlaySong(gameOverMusic, true, .75f);
                 gameOver = true;
             }
             CenterPlayer();
@@ -156,6 +173,7 @@ public class GameEngine : MonoBehaviour
         Instantiate(evoMenuTemplate, Camera.main.gameObject.transform);
         onMatingPhase.Invoke();
         titleText.SetText("Choose Your Mate");
+        
     }
     public void AddEvolution(Evolution evolution)
     {
@@ -169,6 +187,7 @@ public class GameEngine : MonoBehaviour
     public void OnFoodGathered()
     {
         foodGathered++;
+        SoundController.PlaySFX(eatSFX);
         onFoodGathered.Invoke(foodGathered, foodRequirement);
     }
 }

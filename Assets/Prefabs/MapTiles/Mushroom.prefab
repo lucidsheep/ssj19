@@ -153,7 +153,7 @@ MonoBehaviour:
   adjacencyBonus: 5
   isObstacle: 0
   containsFoodProbability: 1
-  containedFood: {fileID: 114517796026169814, guid: c7c00813906eb3648a568c31e7b917cb,
+  containedFood: {fileID: 114306140203228480, guid: 633e470e3e07e5a47a4e110ff531fd52,
     type: 2}
   sprite: {fileID: 212915938934532468}
   foodSpriteRenderer: {fileID: 212215865972901920}

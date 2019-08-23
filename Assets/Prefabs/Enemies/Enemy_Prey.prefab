@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 114199195025752190}
   - component: {fileID: 95842558760593454}
   - component: {fileID: 114255323980984428}
+  - component: {fileID: 82787091324353186}
   m_Layer: 12
   m_Name: Enemy_Prey
   m_TagString: Dangerous
@@ -159,6 +160,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!82 &82787091324353186
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1568645147098914}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95842558760593454
 Animator:
   serializedVersion: 3
@@ -249,6 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldOfVision: {fileID: 58649273680941426}
   type: 1
+  awareSFX: {fileID: 8300000, guid: 87b626399836011408868eced0345d72, type: 3}
+  footstepSFX: {fileID: 0}
 --- !u!114 &114757148990262512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,12 +348,15 @@ MonoBehaviour:
   defaultSpeedMultiplier: 0.5
   attackSpeedMultiplier: 1.2
   attackTime: 0.5
-  foodOnDeath: {fileID: 1860976354385046, guid: c7c00813906eb3648a568c31e7b917cb,
+  attackCharge: 0.5
+  attackRange: 2
+  foodOnDeath: {fileID: 1811239425420244, guid: b8cd88f2daf1f63478f4e9fbde4afda1,
     type: 2}
   foodDroppedRange:
     first: 4
     second: 6
     _initialized: 0
+  attackSFX: {fileID: 8300000, guid: 87b626399836011408868eced0345d72, type: 3}
 --- !u!114 &114760315917795150
 MonoBehaviour:
   m_ObjectHideFlags: 1
