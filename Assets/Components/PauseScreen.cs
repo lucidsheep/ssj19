@@ -28,8 +28,8 @@ public class PauseScreen : MonoBehaviour
         if (transitioning) return;
         transitioning = isVisible = true;
         SetData();
-        bg.DOColor(new Color(0f, 0f, 0f, .5f), .25f).SetUpdate(true);
-        mainObject.transform.DOLocalMoveY(0f, .25f).SetEase(Ease.OutBack).SetUpdate(true).OnComplete(() => transitioning = false);
+        bg.DOColor(new Color(0f, 0f, 0f, .5f), .5f).SetUpdate(true);
+        mainObject.transform.DOLocalMoveY(0f, .5f).SetEase(Ease.OutBack).SetUpdate(true).OnComplete(() => transitioning = false);
     }
 
     void SetData()
@@ -53,12 +53,12 @@ public class PauseScreen : MonoBehaviour
     {
         if (transitioning || !isVisible) return;
         transitioning = true;
-        bg.DOColor(new Color(0f, 0f, 0f, 0f), .25f).SetUpdate(true);
-        mainObject.transform.DOLocalMoveY(-10f, .25f).SetEase(Ease.OutBack).SetUpdate(true).OnComplete(() =>
+        bg.DOColor(new Color(0f, 0f, 0f, 0f), .5f).SetUpdate(true);
+        mainObject.transform.DOLocalMoveY(-10f, .5f).SetEase(Ease.OutBack).SetUpdate(true).OnComplete(() =>
         {
             isVisible = false;
             transitioning = false;
-            TimeControl.resumeTime();
+            Time.timeScale = 1f;
         });
     }
 

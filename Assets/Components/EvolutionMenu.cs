@@ -10,6 +10,9 @@ public class EvolutionMenu : MonoBehaviour
     public GameObject selector;
     public TextMeshPro actionTxt;
     public TextMeshPro traitTxt;
+    public AudioClip[] mateSelectSounds;
+    public AudioClip[] mateConfirmSounds;
+
 
     List<EvolutionMenuView> menuItems = new List<EvolutionMenuView>();
     int curSelection = 0;
@@ -41,12 +44,14 @@ public class EvolutionMenu : MonoBehaviour
     void UpdateSelection()
     {
         Evolution curEvolution = menuItems[curSelection].evolution;
+        SoundController.PlaySFX(mateSelectSounds[curSelection]);
         actionTxt.SetText(curEvolution.action == null ? "" : "ACTION: " + curEvolution.action.abilityName + " - " + curEvolution.action.abilityDescription);
         traitTxt.SetText(curEvolution.trait == null ? "" : "TRAIT: " + curEvolution.trait.abilityName + " - " + curEvolution.trait.abilityDescription);
     }
     private void Update()
     {
-        if(controller.GetAxis("MoveX") > .5f && controller.GetAxisPrev("MoveX") <= .5f)
+        if (PauseScreen.instance.isVisible) return;
+        if (controller.GetAxis("MoveX") > .5f && controller.GetAxisPrev("MoveX") <= .5f)
         {
             Move(true);
         }
@@ -57,6 +62,7 @@ public class EvolutionMenu : MonoBehaviour
         else if(controller.GetButtonDown("Attack"))
         {
             GameEngine.instance.AddEvolution(menuItems[curSelection].evolution);
+            SoundController.PlaySFX(mateConfirmSounds[Random.Range(0, mateConfirmSounds.Length)]);
             Destroy(this.gameObject);
         }
     }

@@ -83,10 +83,13 @@ public class MapManager : MonoBehaviour {
                     mapTileObjects.Add(Instantiate(randomTile, pos, Quaternion.identity));
                 else
                 {
-                    Util.Maybe(enemies.GetRandomItem(), randomEnemy =>
+                    if (Vector3.Distance(pos, midPoint) >= 10f)
                     {
-                        enemyObjects.Add(Instantiate(randomEnemy, pos, Quaternion.identity));
-                    });
+                        Util.Maybe(enemies.GetRandomItem(), randomEnemy =>
+                        {
+                            enemyObjects.Add(Instantiate(randomEnemy, pos, Quaternion.identity));
+                        });
+                    }
                 }
             }
         });
@@ -110,7 +113,7 @@ public class MapManager : MonoBehaviour {
         }
     }
 
-    void ClearMap()
+    public void ClearMap()
     {
         foreach (var tile in mapTileBaseObjects) Destroy(tile.gameObject);
         foreach (var tile in mapTileObjects) Destroy(tile.gameObject);

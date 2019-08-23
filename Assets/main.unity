@@ -314,7 +314,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.496
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1296,7 +1296,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b9db674656e321544b45ab29a1111705, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1572,7 +1572,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 256578251
   m_SortingLayer: 10
-  m_SortingOrder: 12
+  m_SortingOrder: 13
 --- !u!33 &753441646
 MeshFilter:
   m_ObjectHideFlags: 2
@@ -2051,7 +2051,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6e7e4dd139649874b964c0b04c1ef468, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3564,7 +3564,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 256578251
   m_SortingLayer: 10
-  m_SortingOrder: 1
+  m_SortingOrder: 13
 --- !u!33 &1356355372
 MeshFilter:
   m_ObjectHideFlags: 2
@@ -4623,7 +4623,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 256578251
   m_SortingLayer: 10
-  m_SortingOrder: 1
+  m_SortingOrder: 13
 --- !u!33 &1800610889
 MeshFilter:
   m_ObjectHideFlags: 2
@@ -4913,7 +4913,7 @@ MonoBehaviour:
   overworldMusic:
   - {fileID: 8300000, guid: b9db674656e321544b45ab29a1111705, type: 3}
   - {fileID: 8300000, guid: aebd7edf29bd2464eb16b71b2ce6292a, type: 3}
-  matingMusic: {fileID: 8300000, guid: b9db674656e321544b45ab29a1111705, type: 3}
+  matingMusic: {fileID: 8300000, guid: d9b8e11f95c8dd74fac0d9672026681d, type: 3}
   gameOverMusic: {fileID: 8300000, guid: 1fe12c45ba7fc4c4bbdd51d2e5e15885, type: 3}
   eatSFX: {fileID: 8300000, guid: 5731ba8cc8d7ba9469adb23526d1422c, type: 3}
   startingTime: 120
@@ -4933,6 +4933,7 @@ MonoBehaviour:
     weight: 10
   - item: {fileID: 11400000, guid: 9debea8e5d3a9254181d6743a7664d0c, type: 2}
     weight: 10
+  numGenerations: 1
   inGatheringPhase: 0
   inProphecyPhase: 1
 --- !u!114 &2116111931
@@ -4962,8 +4963,6 @@ MonoBehaviour:
   - {fileID: 1127998619}
   - {fileID: 1840944374}
   sfxChannelsHighPriority: []
-  bgmList:
-  - {fileID: 8300000, guid: 85f27a74c1d8d4d26bae6d275de22bdd, type: 3}
   useCrossfade: 0
   defaultVolume: 1
 --- !u!1 &2145295628

@@ -27,6 +27,7 @@ public class UIBarDisplay : MonoBehaviour {
     { 
         GameEngine.instance.onMatingPhase.AddListener(HideDisplay);
         GameEngine.instance.onGatheringPhase.AddListener(ShowDisplay);
+        GameEngine.instance.onBiomeChanged.AddListener(biome => HideDisplay());
 
         storedValues = type == Type.HEALTH ? target.GetComponent<Health>().hitPoints : target.GetComponent<Stamina>().stamina;
 

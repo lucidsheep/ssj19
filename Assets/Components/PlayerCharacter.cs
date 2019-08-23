@@ -58,15 +58,25 @@ public class PlayerCharacter : Creature
 
     void OnBiomeChanged(Biome newBiome)
     {
-        if(newBiome.type == Biome.Type.FROZEN && !HasTrait(Trait.Type.IMMUNITY_ICE))
+        if (newBiome.type == Biome.Type.FROZEN && !HasTrait(Trait.Type.IMMUNITY_ICE))
         {
             health.SetRecoveryRate(1f);
-            stamina.SetRecoveryRate(stamina.defaultRecoveryPerSecond / 2f);
-        } else
+
+        }
+        else
         {
             health.SetRecoveryRate(HasTrait(Trait.Type.ENHANCED_REGEN) ? 5f : health.defaultRecoveryPerSecond);
+
+        }
+        if (newBiome.type == Biome.Type.WETLANDS)
+        {
+            stamina.SetRecoveryRate(stamina.defaultRecoveryPerSecond / 2f);
+        }
+        else
+        {
             stamina.SetRecoveryRate(stamina.defaultRecoveryPerSecond);
         }
+        
         curFootstep = footstepOptions[0].first;
         foreach(var footstep in footstepOptions)
         {
@@ -82,6 +92,7 @@ public class PlayerCharacter : Creature
     override protected void Update()
     {
         base.Update();
+        if (PauseScreen.instance.isVisible) return;
         if (controller.GetJoystickDirection() != Vector2.zero)
         {
             lastMovementVector = controller.GetJoystickDirection();
@@ -89,7 +100,7 @@ public class PlayerCharacter : Creature
             if (timeToNextFootstep <= 0f)
             {
                 audio.Play();
-                timeToNextFootstep = .25f;
+                timeToNextFootstep = .5f;
             }
         }
         else

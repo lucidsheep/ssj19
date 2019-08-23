@@ -41,7 +41,7 @@ public class GameEngine : MonoBehaviour
 
     float timeLeft;
     int foodGathered;
-    int numGenerations = 1;
+    public int numGenerations = 1;
     bool gameOver = false;
 
     LSWeightedList<Biome> biomeList = new LSWeightedList<Biome>();
@@ -117,11 +117,16 @@ public class GameEngine : MonoBehaviour
             }
             else if(!PauseScreen.instance.isVisible)
             {
-                TimeControl.stopTime(999999f);
+                Time.timeScale = 0f;
                 PauseScreen.instance.ShowScreen();
             }
         }
-        
+        else if (inProphecyPhase && ReInput.players.GetPlayer(0).GetButtonDown("Attack"))
+        {
+            inProphecyPhase = false;
+            StartMating();
+        }
+
         if (!inGatheringPhase) return;
         int timeBefore = Mathf.CeilToInt(timeLeft);
         timeLeft -= Time.deltaTime;
@@ -157,11 +162,12 @@ public class GameEngine : MonoBehaviour
             }
             else
             {
-                titleText.SetText("The Journey Ends...\n\nYour species lasted " + numGenerations + " generations.");
+                titleText.SetText("The Journey Ends...\n\nYour species lasted " + numGenerations + " generation" + (numGenerations > 1 ? "s" : "") + ".");
                 SoundController.PlaySong(gameOverMusic, true, .75f);
                 gameOver = true;
             }
             CenterPlayer();
+            MapManager.instance.ClearMap();
         });
         
     }
@@ -194,5 +200,7 @@ public class GameEngine : MonoBehaviour
         foodGathered++;
         SoundController.PlaySFX(eatSFX);
         onFoodGathered.Invoke(foodGathered, foodRequirement);
+        if (foodGathered >= foodRequirement)
+            EndGathering();
     }
 }

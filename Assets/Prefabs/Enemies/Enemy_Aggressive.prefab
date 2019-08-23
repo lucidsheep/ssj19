@@ -179,8 +179,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 10
+  MinDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   defaultHP: 20
   defaultInvincibleTime: 0.5
   defaultRecoveryPerSecond: 5
-  defaultTimeToStartRecovery: 5
+  defaultTimeToStartRecovery: 10
 --- !u!114 &114299215853301332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a884cc5b413244cea90f7e5f1c47b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 0
+  agility: 0
   defaultStrength: 5
   defaultAgility: 4
   defaultSpeedMultiplier: 0.7

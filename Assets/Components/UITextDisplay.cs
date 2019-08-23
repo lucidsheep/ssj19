@@ -20,6 +20,7 @@ public class UITextDisplay : MonoBehaviour
 
         GameEngine.instance.onMatingPhase.AddListener(HideDisplay);
         GameEngine.instance.onGatheringPhase.AddListener(ShowDisplay);
+        GameEngine.instance.onBiomeChanged.AddListener(biome => HideDisplay());
 
     }
 

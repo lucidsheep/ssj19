@@ -15,16 +15,18 @@ public class Evolution
 
     public void GenerateEvolution(int minValue = 80, int maxValue = 100)
     {
+        minValue = 60 + (GameEngine.instance.numGenerations * 5);
+        maxValue = 70 + (GameEngine.instance.numGenerations * 10);
         int generatedValue = 9999;
-        while(generatedValue > maxValue || generatedValue < minValue || (trait == null))
+        while(generatedValue > maxValue || generatedValue < minValue)
         {
             hp = Random.Range(hpRange.first, hpRange.second + 1) * 5;
             sp = Random.Range(spRange.first, spRange.second + 1) * 5;
             str = Random.Range(strRange.first, strRange.second + 1);
             agi = Random.Range(agiRange.first, agiRange.second + 1);
 
-            action = Random.value > .5f ? AbilityList.GetRandomAction() : null;
-            trait = Random.value > .5f ? AbilityList.GetRandomTrait() : null;
+            action = null; //Random.value > .5f ? AbilityList.GetRandomAction() : null;
+            trait = AbilityList.GetRandomTrait();
 
             generatedValue = GetValue();
         }

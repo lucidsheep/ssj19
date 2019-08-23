@@ -32,6 +32,7 @@ public class EnemyController : Controller
 
     private void Update()
     {
+        if (PauseScreen.instance.isVisible) return;
         timeToBehaviorCheck -= Time.deltaTime;
         if(timeToBehaviorCheck <= 0f)
         {
