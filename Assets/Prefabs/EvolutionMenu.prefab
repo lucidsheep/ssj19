@@ -379,8 +379,8 @@ MonoBehaviour:
   menuViewTemplate: {fileID: 114951510534776264, guid: f64fa85a8da7e1947ab8faee80ad6d8e,
     type: 2}
   selector: {fileID: 1746265754985458}
-  actionTxt: {fileID: 114912420634237664}
-  traitTxt: {fileID: 114409555583797698}
+  actionTxt: {fileID: 114409555583797698}
+  traitTxt: {fileID: 114912420634237664}
   mateSelectSounds:
   - {fileID: 8300000, guid: 09060ef8414ab954dad885fd527cff6f, type: 3}
   - {fileID: 8300000, guid: 7ece97b752bd59947aa6ac72c9829386, type: 3}

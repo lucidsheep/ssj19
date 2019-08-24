@@ -11,6 +11,7 @@ public class PauseScreen : MonoBehaviour
     public TextMeshPro traitsTxt;
     public SpriteRenderer bg;
     public GameObject mainObject;
+    public TextMeshPro titleTxt;
 
     public bool isVisible = false;
 
@@ -34,6 +35,7 @@ public class PauseScreen : MonoBehaviour
 
     void SetData()
     {
+        titleTxt.SetText("Generation " + GameEngine.instance.numGenerations);
         var player = GameEngine.instance.player;
         var hp = player.GetComponent<Health>();
         var sp = player.GetComponent<Stamina>();

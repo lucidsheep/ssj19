@@ -11,12 +11,17 @@ public class GameEngine : MonoBehaviour
     public EvolutionMenu evoMenuTemplate;
     public SpriteRenderer fadeToBlack;
     public TextMeshPro titleText;
+    public SpriteRenderer titleScreen;
+    public SpriteRenderer gameOverScreen;
 
     public AudioClip titleMusic;
     public AudioClip[] overworldMusic;
     public AudioClip matingMusic;
     public AudioClip gameOverMusic;
     public AudioClip eatSFX;
+
+    public AudioSource eatChannel;
+    public AudioSource mateSelectChannel;
 
     int overworldMusicIndex = 0;
 
@@ -43,6 +48,7 @@ public class GameEngine : MonoBehaviour
     int foodGathered;
     public int numGenerations = 1;
     bool gameOver = false;
+    bool titleScreenShowing = true;
 
     LSWeightedList<Biome> biomeList = new LSWeightedList<Biome>();
     public bool inGatheringPhase = false;
@@ -106,6 +112,16 @@ public class GameEngine : MonoBehaviour
     }
     private void Update()
     {
+        if(titleScreenShowing)
+        {
+            if (ReInput.players.GetPlayer(0).GetButtonDown("Start"))
+            {
+                Destroy(titleScreen.gameObject);
+                titleScreenShowing = false;
+            }
+            return;
+        }
+        
         if(ReInput.players.GetPlayer(0).GetButtonDown("Start"))
         {
             if (gameOver)
@@ -148,6 +164,7 @@ public class GameEngine : MonoBehaviour
 
     void EndGathering()
     {
+        if (!inGatheringPhase) return;
         inGatheringPhase = false;
         SoundController.FadeOut(.75f);
         
@@ -162,8 +179,9 @@ public class GameEngine : MonoBehaviour
             }
             else
             {
-                titleText.SetText("The Journey Ends...\n\nYour species lasted " + numGenerations + " generation" + (numGenerations > 1 ? "s" : "") + ".");
+                titleText.SetText("Your species lasted " + numGenerations + " generation" + (numGenerations > 1 ? "s" : "") + ".");
                 SoundController.PlaySong(gameOverMusic, true, .75f);
+                gameOverScreen.DOColor(new Color(1f, 1f, 1f, 1f), .75f);
                 gameOver = true;
             }
             CenterPlayer();
@@ -184,7 +202,7 @@ public class GameEngine : MonoBehaviour
         Instantiate(evoMenuTemplate, Camera.main.gameObject.transform);
         onMatingPhase.Invoke();
         titleText.SetText("Choose Your Mate");
-        
+        SoundController.PlaySong(matingMusic);
     }
     public void AddEvolution(Evolution evolution)
     {
@@ -198,7 +216,7 @@ public class GameEngine : MonoBehaviour
     public void OnFoodGathered()
     {
         foodGathered++;
-        SoundController.PlaySFX(eatSFX);
+        eatChannel.Play();
         onFoodGathered.Invoke(foodGathered, foodRequirement);
         if (foodGathered >= foodRequirement)
             EndGathering();

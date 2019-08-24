@@ -17,6 +17,9 @@ public class PlayerCharacter : Creature
    [System.Serializable]
    public class AudioClipBiome : LSTuple<AudioClip, Biome.Type> { }
     public AudioClipBiome[] footstepOptions;
+    public AudioClip[] attackSFXOptions;
+    public AudioClip[] dodgeSFXOptions;
+    public AudioClip[] hitSFXOptions;
 
     protected Stamina stamina;
 
@@ -54,6 +57,13 @@ public class PlayerCharacter : Creature
             AddEvolution(evo);
         });
         GameEngine.instance.onBiomeChanged.AddListener(OnBiomeChanged);
+        GetComponent<Health>().onHPChange.AddListener(OnHit);
+    }
+
+    void OnHit(int delta)
+    {
+        if (delta < -5f)
+            SoundController.PlaySFX(Util.RandomFromArray(hitSFXOptions));
     }
 
     void OnBiomeChanged(Biome newBiome)
@@ -92,7 +102,7 @@ public class PlayerCharacter : Creature
     override protected void Update()
     {
         base.Update();
-        if (PauseScreen.instance.isVisible) return;
+        if (PauseScreen.instance.isVisible || GameEngine.instance.inGatheringPhase == false) return;
         if (controller.GetJoystickDirection() != Vector2.zero)
         {
             lastMovementVector = controller.GetJoystickDirection();
@@ -143,6 +153,7 @@ public class PlayerCharacter : Creature
     }
     protected override void OnButtonDown(Controller.Command command)
     {
+        if (!GameEngine.instance.inGatheringPhase) return;
         switch (command)
         {
             
@@ -178,6 +189,8 @@ public class PlayerCharacter : Creature
         attackAnim.transform.localRotation = Quaternion.Euler(0f, 0f, Util.Vector2ToAngle(dir) + 90f);
         attackAnim.attackDamage = strength;
         attackAnim.transform.localScale = Vector3.one * (HasTrait(Trait.Type.ENHANCED_ATTACK) ? 2.7f : 1.8f);
+
+        SoundController.PlaySFX(Util.RandomFromArray(attackSFXOptions));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -235,6 +248,7 @@ public class PlayerCharacter : Creature
 		speedMultiplier = dashSpeed;
 		isDashing = true;
         Instantiate(dashAnimTemplate, transform.position, Quaternion.identity);
+        SoundController.PlaySFX(Util.RandomFromArray(dodgeSFXOptions));
 		TimeControl.StartTimer(dashLength, () =>
 		{
 			speedMultiplier = defaultSpeedMultiplier;

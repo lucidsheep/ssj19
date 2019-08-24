@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 95777383265388964}
   - component: {fileID: 114021681457834306}
   - component: {fileID: 82342253503797468}
+  - component: {fileID: 114164644861368576}
   m_Layer: 12
   m_Name: Enemy_Apex
   m_TagString: Dangerous
@@ -179,8 +180,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 10
-  MaxDistance: 20
+  MinDistance: 7
+  MaxDistance: 14
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -326,6 +327,17 @@ MonoBehaviour:
   defaultInvincibleTime: 0.5
   defaultRecoveryPerSecond: 5
   defaultTimeToStartRecovery: 5
+--- !u!114 &114164644861368576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110636044740698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df677c4a8091434da53993163477242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114577257679294232
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,7 +6,7 @@ using DG.Tweening;
 public class UIBarDisplay : MonoBehaviour {
 
     public SpriteRenderer icon;
-    public SpriteRenderer bg;
+    //public SpriteRenderer bg;
     public LSFillBar bar;
     public enum Type { HEALTH, STAMINA }
     public Type type;
@@ -80,14 +80,14 @@ public class UIBarDisplay : MonoBehaviour {
     public void ShowDisplay()
     {
         shouldDisplay = true;
-        icon.enabled = bg.enabled = true;
+        icon.enabled = true;
         ratio = (float)storedValues.first / (float)storedValues.second;
     }
 
     public void HideDisplay()
     {
         shouldDisplay = false;
-        icon.enabled = bg.enabled = false;
+        icon.enabled = false;
         if (ratioTween != null) ratioTween.Kill();
         bar.SetFill(0f);
     }

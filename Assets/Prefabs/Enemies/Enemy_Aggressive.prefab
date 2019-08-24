@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 95049741851262500}
   - component: {fileID: 114646742361022000}
   - component: {fileID: 82961300492475854}
+  - component: {fileID: 114160400036350648}
   m_Layer: 12
   m_Name: Enemy_Aggressive
   m_TagString: Dangerous
@@ -171,7 +172,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -179,8 +180,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 10
-  MaxDistance: 20
+  MinDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -272,6 +273,17 @@ MonoBehaviour:
   type: 0
   awareSFX: {fileID: 8300000, guid: 1af3af80ec2ea884f891848cc836eb11, type: 3}
   footstepSFX: {fileID: 0}
+--- !u!114 &114160400036350648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293747863141218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df677c4a8091434da53993163477242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114254734354113764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,8 +334,8 @@ MonoBehaviour:
   defaultStrength: 5
   defaultAgility: 4
   defaultSpeedMultiplier: 0.7
-  attackSpeedMultiplier: 3
-  attackTime: 0.5
+  attackSpeedMultiplier: 4
+  attackTime: 0.25
   attackCharge: 0.5
   attackRange: 3
   foodOnDeath: {fileID: 1811239425420244, guid: b8cd88f2daf1f63478f4e9fbde4afda1,

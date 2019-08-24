@@ -62,7 +62,8 @@ public class EvolutionMenu : MonoBehaviour
         else if(controller.GetButtonDown("Attack"))
         {
             GameEngine.instance.AddEvolution(menuItems[curSelection].evolution);
-            SoundController.PlaySFX(mateConfirmSounds[Random.Range(0, mateConfirmSounds.Length)]);
+            GameEngine.instance.mateSelectChannel.clip = mateConfirmSounds[Random.Range(0, mateConfirmSounds.Length)];
+            GameEngine.instance.mateSelectChannel.Play();
             Destroy(this.gameObject);
         }
     }

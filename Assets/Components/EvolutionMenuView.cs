@@ -5,10 +5,13 @@ public class EvolutionMenuView : MonoBehaviour
 {
     public TextMeshPro titleTxt, hpTxt, spTxt, strTxt, agiTxt, actionTxt, traitTxt;
     public Evolution evolution;
+    public SpriteRenderer mateSprite;
+    public Sprite[] mateSpriteOptions;
 
     private void Start()
     {
         //if (evolution == null) return;
+        mateSprite.sprite = Util.RandomFromArray(mateSpriteOptions);
         evolution = new Evolution();
         evolution.GenerateEvolution();
 

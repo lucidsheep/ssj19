@@ -49,6 +49,10 @@ public class EnemyCreature : Creature
         }
 	}
 
+    void OnDestroy()
+    {
+        if (pounceTimer != null) TimeControl.RemoveTimer(pounceTimer.id);
+    }
     protected override void OnDeath()
     {
         base.OnDeath();
